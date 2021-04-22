@@ -1,5 +1,12 @@
 @import url('https://elegant-ui.netlify.app/style.css');
    
+.card-prod {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;  
+    flex-wrap: wrap;
+    width: 100%;
+}
 .card {
     width : 289px;
     height : auto;
@@ -36,12 +43,11 @@
     font-size: 1.4rem;
 }
 
-HiOutlineHeart {
-    width: 15px;
-    height: 15px;
+.hiOut {
+    width: 20px;
+    height: 20px;
 }
-.no-border {
+.no-border, .wish {
     border: none;
     background-color: transparent;
-    
 }
