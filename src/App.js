@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import {ProductListing} from "./components/products/ProductListing";
 import {CartListing} from "./components/cart/CartListing";
+import { Wishlist } from "./components/wishlist/Wishlist";
 
 function App() {
   const [route, setRoute] = useState("products");
@@ -16,6 +17,7 @@ function App() {
     <div className="routes">
     {route === "products" &&  <ProductListing />}
     {route === "cart" &&  <CartListing />}
+    {route === "wishlist" && <Wishlist />}
     </div>
     
     </div>

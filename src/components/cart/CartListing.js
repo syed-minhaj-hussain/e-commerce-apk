@@ -1,6 +1,7 @@
 import React from 'react'
 import { useWishCartContext } from '../../context/WishCartContext';
 import "./cartStyle.css";
+import { MdDelete } from 'react-icons/md';
 
 export const CartListing = () => {
     const {state, dispatch} = useWishCartContext();
@@ -12,6 +13,7 @@ export const CartListing = () => {
     }
     return (
        <div className="card-flex">
+       <p>{state.cart.length < 1 ? "Your Cart Is Empty" : "Cart Items"}</p>
        {state.cart ? state.cart.map(item => {
            return (
                <div key={item.id} className="card-list">
@@ -29,11 +31,16 @@ export const CartListing = () => {
                             <button  onClick={() => dispatch({type : "DECREMENT", payload : item})}> - </button>
 
                        </div>
+                       <div className="remove">
+                       <button onClick={() => dispatch({type : "REMOVE-FROM-CART", payload : item})} className="remove-btn no-border">
+                       <MdDelete />
+                       </button>
+                       </div>
                     </div>
                </div>
            )
        }) : null}
-       <p>Total {totalAmount()}</p>
+       <p className="amount-absolute">Total $ {totalAmount()}</p>
        </div>
     )
 }
