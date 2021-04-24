@@ -3,6 +3,7 @@ import { useWishCartContext } from "../../context/WishCartContext";
 import {vintagedb} from "../../vintageDb";
 import "./style.css";
 import { HiOutlineHeart, HiHeart} from 'react-icons/hi';
+import {Link} from 'react-router-dom';
 
 export const ProductListing = () => {
     const {state : {wishlist}, dispatch} = useWishCartContext();
@@ -20,20 +21,17 @@ export const ProductListing = () => {
                     <button className=".no-border wish" onClick={ 
                          () => dispatch({type : "ADD-TO-WISHLIST",  payload : product})}>  <HiOutlineHeart className="hiOut" /> 
                         </button>}
-                       
-
-                            
-
                 </div>
                 <div className="card-body">
                    <div className="left">
                         <p>{product.name}</p>
-                        <p>{product.price}</p>
+                        <p>${product.price}</p>
+                        <Link to={`/product/${product.id}`}>view more</Link>
                    </div>
                    <div className="right">
                         <button className="btn btn-fill-success" onClick={() => dispatch({type : "ADD-TO-CART", payload : product})}>Add To Cart</button>
                    </div>
-                </div>
+                   </div>
            </div>
        }) : null}
        </div>

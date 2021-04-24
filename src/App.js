@@ -1,27 +1,29 @@
-import { useState } from "react";
+
 import "./App.css";
 import {ProductListing} from "./components/products/ProductListing";
 import {CartListing} from "./components/cart/CartListing";
 import { Wishlist } from "./components/wishlist/Wishlist";
-
+import { Routes, Route, Link} from 'react-router-dom';
+import {Product} from "./components/products/Product.js";
 function App() {
-  const [route, setRoute] = useState("products");
+  function NotFound() {
+    return <h1>Page Not Found</h1>
+  }
   return (
     <div className="App">
-    <div className="btns">
-    <button onClick={() => setRoute("products")}>Products</button>
-    <button onClick={() => setRoute("cart")}>cart</button>
-    <button onClick={() => setRoute("wishlist")}>wishlist</button>
-    </div>
-     
-    <div className="routes">
-    {route === "products" &&  <ProductListing />}
-    {route === "cart" &&  <CartListing />}
-    {route === "wishlist" && <Wishlist />}
-    </div>
     
-    </div>
-         
+    
+    
+    <Routes>
+      <Route path="/" element={<ProductListing />} />
+      <Route path="/cart" element={<CartListing />} />
+      <Route path="/wishlist" element={<Wishlist/>}/>
+      <Route path="/product/:id" element={<Product />} />
+      <Route path="*" element={<NotFound />} />
+    </Routes>
+
+    
+    </div>     
   );
 }
 
