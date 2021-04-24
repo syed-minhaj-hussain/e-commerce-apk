@@ -26,7 +26,7 @@ export const ProductListing = () => {
                    <div className="left">
                         <p>{product.name}</p>
                         <p>${product.price}</p>
-                        <Link to={`/product/${product.id}`}>view more</Link>
+                        <Link className="link" to={`/product/${product.id}`}>view more</Link>
                    </div>
                    <div className="right">
                         <button className="btn btn-fill-success" onClick={() => dispatch({type : "ADD-TO-CART", payload : product})}>Add To Cart</button>

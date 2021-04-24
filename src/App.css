@@ -30,6 +30,7 @@
     font-size: 2rem;
     z-index: 5;
     align-items: center;
+    background-color: #333;
 }
 #navbar .right-nav{
     display: flex;
@@ -37,6 +38,7 @@
    align-items: center;
    list-style: none;
    margin: 0 0.25rem ;
+   /* background-color: #fff; */
 }
 .right-nav .nav-link {
     padding: 0.75rem;

@@ -12,7 +12,16 @@ function App() {
   return (
     <div className="App">
     
-    
+    <nav id="navbar">
+      <div className="left">
+          <Link className="nav-link" to="/">Vintage-Mart</Link>
+      </div>
+      <div className="right-nav">
+          <Link className="nav-link" to="/">Products</Link>
+          <Link className="nav-link" to="/cart">Cart</Link>
+          <Link className="nav-link" to="/wishlist">Wishlist</Link>
+      </div>
+    </nav>
     
     <Routes>
       <Route path="/" element={<ProductListing />} />
