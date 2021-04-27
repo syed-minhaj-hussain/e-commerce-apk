@@ -11,10 +11,17 @@ export const CartListing = () => {
         state.cart.map(item => total += Number(item.quantity) * Number(item.price))
         return total;
     }
+    const updatedCart = state.cart.reduce((acc, item) => {
+        if(acc.find(accItem => accItem.id === item.id)){
+            return [...acc];
+        } else {
+            return [...acc, item];
+        }
+    }, [])
     return (
        <div className="card-flex">
-       <p>{state.cart.length < 1 ? "Your Cart Is Empty" : "Cart Items"}</p>
-       {state.cart ? state.cart.map(item => {
+       <p>{updatedCart.length < 1 ? "Your Cart Is Empty" : "Cart Items"}</p>
+       {updatedCart ? updatedCart.map(item => {
            return (
                <div key={item.id} className="card-list">
                     <div className="card-list-img">
