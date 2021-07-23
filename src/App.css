@@ -1,52 +1,10 @@
-/* /* .App {
-    display: flex;
-    flex-direction: row;
-    /* justify-content: space-evenly ; */
-    /* flex-wrap: wrap; */
-    /* width: 100vw; */
-/* }  */
-
-/* .App .routes{
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    width: 100%;
-} */
 .App {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-#navbar{
-    position: sticky;
-    top: 0;
-    display: flex;
-    justify-content: space-between;
-    background-color: #fff;
-    color: #333;
-    padding: 1rem;
-    z-index: 1;
-    font-size: 2rem;
-    z-index: 5;
-    align-items: center;
-    background-color: #333;
-}
-#navbar .right-nav{
-    display: flex;
-   justify-content: center;
-   align-items: center;
-   list-style: none;
-   margin: 0 0.25rem ;
-   /* background-color: #fff; */
-}
-.right-nav .nav-link {
-    padding: 0.75rem;
-    margin: 0 0.25rem ;
-    margin-right: 1rem; 
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 h1 {
-    margin-block-start: 0px;
-    margin-block-end: 0px;
+  margin-block-start: 0px;
+  margin-block-end: 0px;
 }
