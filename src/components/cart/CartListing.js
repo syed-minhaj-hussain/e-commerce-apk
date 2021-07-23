@@ -17,7 +17,8 @@ export const CartListing = () => {
         } else {
             return [...acc, item];
         }
-    }, [])
+    }, []);
+    
     return (
        <div className="card-flex">
        <p>{updatedCart.length < 1 ? "Your Cart Is Empty" : "Cart Items"}</p>
