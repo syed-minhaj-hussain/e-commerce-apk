@@ -1,19 +1,20 @@
-import { createContext } from "react";
+import { createContext, useReducer, useContext } from "react";
 import { products } from "../productsDB";
+import { reducerFunc } from "../utilities";
 
 const WishCartContext = createContext();
 
-const WishCartProvider = ({ children }) => {
+export const WishCartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducerFunc, {
     cart: [],
     products,
     wislist: [],
   });
   return (
-    <WishCartContext.Provider value={{ cart, products, wishlist }}>
+    <WishCartContext.Provider value={{ state, dispatch }}>
       {children}
     </WishCartContext.Provider>
   );
 };
 
-const useWishCartContext = () => useContext(WishCartContext);
+export const useWishCartContext = () => useContext(WishCartContext);
