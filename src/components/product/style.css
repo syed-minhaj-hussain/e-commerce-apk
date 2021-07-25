@@ -50,7 +50,7 @@ img {
 @media (max-width: 600px) {
   .grid {
     grid-template-columns: repeat(2, 1fr);
-    grid-gap: 0.1rem;
+    grid-gap: 0.5rem;
   }
   /* .show {
     display: none;
