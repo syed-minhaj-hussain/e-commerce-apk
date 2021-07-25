@@ -68,8 +68,8 @@ img {
   }
   .absolute {
     position: absolute;
-    right: 0.6rem;
-    top: 0.6rem;
-    font-size: 1.25rem;
+    right: 0.55rem;
+    top: 0.55rem;
+    font-size: 1.35rem;
   }
 }
