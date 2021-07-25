@@ -1,5 +1,6 @@
 import { useWishCartContext } from "../../context/WishCartContext";
 import "./style.css";
+import { MdFavoriteBorder } from "react-icons/md";
 export const ProductListing = () => {
   const {
     state: { products },
@@ -15,7 +16,9 @@ export const ProductListing = () => {
                 <img src={img_1} alt={name} />
               </figure>
               <div className="card-body">
-                <p> {name}</p>₹{price}
+                <p className="title"> {name}</p>
+                <p className="sub-title"> ₹ {price}</p>
+                <MdFavoriteBorder className="absolute" />
               </div>
             </div>
           </div>

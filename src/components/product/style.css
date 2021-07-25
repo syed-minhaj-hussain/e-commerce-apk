@@ -20,14 +20,26 @@
   color: #333;
   border-radius: 0.25rem;
   height: 100%;
+  position: relative;
+}
+.absolute {
+  position: absolute;
+  right: 1rem;
+  top: 1rem;
+  font-size: 1.5rem;
 }
 img {
   width: 100%;
 }
 .card-body {
-  padding: 0.7rem;
+  padding: 0 0.6rem;
   font-size: 1.2rem;
-  font-weight: 500;
+}
+.title {
+  font-weight: 550;
+}
+.sub-title {
+  font-weight: 400;
 }
 
 @media (max-width: 768px) {
@@ -53,5 +65,11 @@ img {
     padding: 0.3rem;
     font-size: 1rem;
     font-weight: 200;
+  }
+  .absolute {
+    position: absolute;
+    right: 0.6rem;
+    top: 0.6rem;
+    font-size: 1.25rem;
   }
 }
