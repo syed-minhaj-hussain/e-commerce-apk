@@ -68,9 +68,6 @@ img {
     grid-template-columns: repeat(2, 1fr);
     grid-gap: 0.5rem;
   }
-  /* .show {
-    display: none;
-  } */
   .container {
     max-width: 480px;
     margin: 0.5rem auto;
@@ -92,5 +89,16 @@ img {
     right: 0.55rem;
     top: 0.55rem;
     font-size: 1.35rem;
+  }
+  .btn {
+    width: 100%;
+    text-align: center;
+    padding: 0.35rem;
+    background-color: #000;
+    color: #fff;
+    border: 0.1rem solid #000;
+    font-size: 0.7rem;
+    font-weight: 430;
+    margin-top: 0.1rem;
   }
 }
