@@ -21,7 +21,7 @@ export const CartListing = () => {
             </div>
             <div className={cartStyle.cardBody}>
               <p className={cartStyle.title}> {name}</p>
-              <p className={cartStyle.subTitle}> ₹ {price}</p>
+              <p className={cartStyle.subTitle}> ₹ {price * quantity}</p>
               <div style={{ position: "relative" }}>
                 <div className={cartStyle.upper}>
                   <span style={{ position: "absolute", left: "0.5rem" }}>
