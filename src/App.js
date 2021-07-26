@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./App.css";
 import { ProductListing } from "./components/product/ProductListing";
 import { CartListing } from "./components/cart/CartListing";
+import { Wishlist } from "./components/wishlist/Wishlist";
 function App() {
   const [route, setRoute] = useState("products");
   return (
@@ -11,6 +12,7 @@ function App() {
       <button onClick={() => setRoute("wishlist")}>wishlist</button>
       {route === "products" && <ProductListing />}
       {route === "cart" && <CartListing />}
+      {route === "wishlist" && <Wishlist />}
     </div>
   );
 }

@@ -8,7 +8,7 @@ export const WishCartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducerFunc, {
     cart: [],
     products,
-    wislist: [],
+    wishlist: [],
   });
   return (
     <WishCartContext.Provider value={{ state, dispatch }}>

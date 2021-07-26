@@ -1,5 +1,5 @@
 import { useWishCartContext } from "../../context/WishCartContext";
-import "./product.css";
+import productStyle from "./product.module.css";
 import { MdFavoriteBorder } from "react-icons/md";
 export const ProductListing = () => {
   const {
@@ -8,21 +8,29 @@ export const ProductListing = () => {
   } = useWishCartContext();
   console.log(products);
   return (
-    <div className="container">
-      <div className="grid">
+    <div className={productStyle.container}>
+      <div className={productStyle.grid}>
         {products?.map(({ id, name, images: { img_1 }, price }, index, arr) => (
           <div key={id}>
-            <div className="card">
+            <div className={productStyle.card}>
               <figure>
                 <img src={img_1} alt={name} />
               </figure>
-              <div className="card-body">
-                <p className="title"> {name}</p>
-                <p className="sub-title"> ₹ {price}</p>
-                <MdFavoriteBorder className="absolute" />
+              <div className={productStyle.cardBody}>
+                <p className={productStyle.title}> {name}</p>
+                <p className={productStyle.subTitle}> ₹ {price}</p>
+                <MdFavoriteBorder
+                  className={productStyle.absolute}
+                  onClick={() =>
+                    dispatch({
+                      type: "ADD-TO-WISHLIST",
+                      payload: arr?.find((item) => item.id === id),
+                    })
+                  }
+                />
               </div>
               <button
-                className="btn"
+                className={productStyle.btn}
                 onClick={() =>
                   dispatch({
                     type: "ADD-TO-CART",
