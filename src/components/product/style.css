@@ -51,6 +51,9 @@ img {
   font-size: 0.9rem;
   font-weight: 470;
   margin-top: 0.1rem;
+  position: relative;
+  z-index: 5;
+  transition: 0.2s;
 }
 .btn:hover {
   background-color: #fff;
@@ -79,10 +82,10 @@ img {
     font-size: 0.8rem;
   }
   .title {
-    font-weight: 450;
+    font-weight: 460;
   }
   .sub-title {
-    font-weight: 300;
+    font-weight: 320;
   }
   .absolute {
     position: absolute;
