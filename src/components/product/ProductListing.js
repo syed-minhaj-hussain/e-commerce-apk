@@ -20,6 +20,7 @@ export const ProductListing = () => {
                 <p className="sub-title"> ₹ {price}</p>
                 <MdFavoriteBorder className="absolute" />
               </div>
+              <button className="btn">Add To Cart</button>
             </div>
           </div>
         ))}
