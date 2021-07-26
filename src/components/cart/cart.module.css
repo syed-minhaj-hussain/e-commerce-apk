@@ -97,6 +97,11 @@
     grid-gap: 1rem;
     margin-top: 1rem;
   }
+  .btn {
+    width: 100%;
+    font-size: 0.8rem;
+    padding: 0.2rem 0.4rem;
+  }
 }
 @media (max-width: 480px) {
   .container {
@@ -109,5 +114,10 @@
     grid-template-columns: repeat(1, 1fr);
     grid-gap: 1rem;
     margin-top: 1rem;
+  }
+  .btn {
+    width: 100%;
+    font-size: 0.7rem;
+    padding: 0.2rem 0.4rem;
   }
 }
