@@ -4,6 +4,7 @@ import cartStyle from "../cart/cart.module.css";
 export const Wishlist = () => {
   const {
     state: { wishlist },
+    dispatch,
   } = useWishCartContext();
   console.log({ wishlist });
   return (
@@ -22,7 +23,14 @@ export const Wishlist = () => {
 
               <br />
               <div>
-                <button className={cartStyle.btn}>Remove From Wishlist</button>
+                <button
+                  className={cartStyle.btn}
+                  onClick={() =>
+                    dispatch({ type: "REMOVE-FROM-WISHLIST", payload: id })
+                  }
+                >
+                  Remove From Wishlist
+                </button>
               </div>
             </div>
           </div>

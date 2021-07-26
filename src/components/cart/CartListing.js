@@ -2,18 +2,18 @@ import { useWishCartContext } from "../../context/WishCartContext";
 import { MdAdd, MdRemove } from "react-icons/md";
 // import { IoIosArrowForward } from "react-icons/io";
 import cartStyle from "./cart.module.css";
+import { ShowOrHideWishlist } from "./ShowOrHideWishlist";
 
 export const CartListing = () => {
   const {
     state: { cart },
     dispatch,
   } = useWishCartContext();
-  console.log({ cart });
   return (
     <div className={cartStyle.container}>
       <div className={cartStyle.grid}>
         {cart?.map(({ id, name, images: { img_1 }, quantity, price }) => (
-          <div className={cartStyle.card}>
+          <div className={cartStyle.card} key={id}>
             <div className={cartStyle.cardHead}>
               <figure className={cartStyle.margin}>
                 <img className={cartStyle.img} src={img_1} alt={name} />
@@ -27,16 +27,34 @@ export const CartListing = () => {
                   <span style={{ position: "absolute", left: "0.5rem" }}>
                     qty:{" "}
                   </span>
-                  <MdRemove className={cartStyle.iconDecrease} />
-                  <span style={{ position: "absolute", right: "4.1rem" }}>
+                  <MdRemove
+                    className={cartStyle.iconDecrease}
+                    onClick={() => dispatch({ type: "DECREMENT", payload: id })}
+                  />
+                  <span
+                    style={{
+                      position: "absolute",
+                      right: "4rem",
+                    }}
+                  >
                     {quantity}
                   </span>
-                  <MdAdd className={cartStyle.iconIncrease} />
+                  <MdAdd
+                    className={cartStyle.iconIncrease}
+                    onClick={() => dispatch({ type: "INCREMENT", payload: id })}
+                  />
                 </div>
                 <br />
                 <div style={{ position: "absolute", top: "2rem" }}>
-                  <button className={cartStyle.btn}>Add To Wishlist</button>
-                  <button className={cartStyle.btn}>Remove From cart</button>
+                  <ShowOrHideWishlist id={id} btn={cartStyle.btn} />
+                  <button
+                    className={cartStyle.btn}
+                    onClick={() =>
+                      dispatch({ type: "REMOVE-FROM-CART", payload: id })
+                    }
+                  >
+                    Remove From cart
+                  </button>
                 </div>
               </div>
             </div>
