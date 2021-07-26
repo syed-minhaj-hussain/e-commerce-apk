@@ -102,6 +102,7 @@
   .container {
     max-width: 480px;
     margin: 1px auto;
+    padding: 0.5rem;
   }
   .grid {
     display: grid;
