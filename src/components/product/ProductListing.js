@@ -5,7 +5,6 @@ import { ShowOrHideAddToCart } from "./ShowOrHideAddToCart";
 export const ProductListing = () => {
   const {
     state: { products },
-    dispatch,
   } = useWishCartContext();
   return (
     <div className={productStyle.container}>

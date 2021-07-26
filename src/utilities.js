@@ -38,5 +38,7 @@ export const reducerFunc = (state, action) => {
             : item
         ),
       };
+    default:
+      return state;
   }
 };
