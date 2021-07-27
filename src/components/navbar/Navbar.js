@@ -5,7 +5,7 @@ import { useAuthContext } from "../../context/AuthContext";
 
 export const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
-  const { isUserLoggedIn, setIsUserLoggedIn } = useAuthContext();
+  const { isUserLoggedIn, setIsUserLoggedIn, logout } = useAuthContext();
   return (
     <nav className={navStyle.navbar}>
       <div className={navStyle.brandTitle}>Vintage-Mart</div>
@@ -73,7 +73,7 @@ export const Navbar = () => {
                   fontSize: "1rem",
                   padding: "0 0 0 1rem",
                 }}
-                onClick={() => setIsUserLoggedIn((prev) => !prev)}
+                onClick={() => logout()}
               >
                 Logout
               </button>

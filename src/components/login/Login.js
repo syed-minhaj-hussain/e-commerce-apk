@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocation } from "react-router";
+import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import logStyle from "./login.module.css";
 
@@ -53,6 +54,9 @@ export const Login = () => {
               <input type="submit" value="Login" className={logStyle.btn} />
             </form>
           </div>
+          <p>
+            Don't have an account ? <Link to="/register">register</Link>{" "}
+          </p>
         </section>
       </div>
     </>
