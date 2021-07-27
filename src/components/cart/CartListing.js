@@ -18,7 +18,7 @@ export const CartListing = () => {
   );
   return (
     <div className={cartStyle.container}>
-      <h2>Total Amount : {total}</h2>
+      <h2>Total Amount : {total} </h2>
       <div className={cartStyle.grid}>
         {cart?.map(({ id, name, images: { img_1 }, quantity, price }) => {
           const priceOverQuantity = price * quantity;
