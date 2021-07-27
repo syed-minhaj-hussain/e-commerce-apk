@@ -1,9 +1,11 @@
 import { NavLink } from "react-router-dom";
 import navStyle from "./nav.module.css";
 import { useState } from "react";
+import { useAuthContext } from "../../context/AuthContext";
 
 export const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
+  const { isUserLoggedIn, setIsUserLoggedIn } = useAuthContext();
   return (
     <nav className={navStyle.navbar}>
       <div className={navStyle.brandTitle}>Vintage-Mart</div>
@@ -59,6 +61,34 @@ export const Navbar = () => {
             >
               Wishlist
             </NavLink>
+          </li>
+          <li>
+            {isUserLoggedIn ? (
+              <button
+                style={{
+                  margin: "1rem 2rem 0 0",
+                  backgroundColor: "inherit",
+                  border: "none",
+                  color: "inherit",
+                  fontSize: "1rem",
+                  padding: "0 0 0 1rem",
+                }}
+                onClick={() => setIsUserLoggedIn((prev) => !prev)}
+              >
+                Logout
+              </button>
+            ) : (
+              <NavLink
+                to="/login"
+                activeStyle={{
+                  fontWeight: "bold",
+                  color: "white",
+                }}
+                className={navStyle.navLinks}
+              >
+                Login
+              </NavLink>
+            )}
           </li>
         </ul>
       </div>
