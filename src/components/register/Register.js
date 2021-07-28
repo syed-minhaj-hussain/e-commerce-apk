@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useLocation } from "react-router";
+import { useNavigate } from "react-router";
 import { useAuthContext } from "../../context/AuthContext";
 import regStyle from "./register.module.css";
 
@@ -7,12 +7,13 @@ export const Register = () => {
   const { isUserLoggedIn, register } = useAuthContext();
   const [text, setText] = useState("");
   const [password, setPassword] = useState("");
-  const [{ status, msg, backgroundColor }, setAlert] = useState({
+  const [{ status, msg, backgroundColor, color }, setAlert] = useState({
     status: null,
     message: null,
     backgroundColor: "#fff",
+    color: "#fff",
   });
-  const { state } = useLocation();
+  const navigate = useNavigate();
   console.log({ isUserLoggedIn });
   return (
     <>
@@ -28,9 +29,10 @@ export const Register = () => {
                   backgroundColor,
                   padding: "1rem",
                   margin: "0.5rem",
+                  color,
                 }}
               >
-                {msg}
+                {msg} & You Will Be Redirected To Login
               </p>
             )}
             {status === false && (
@@ -39,6 +41,7 @@ export const Register = () => {
                   backgroundColor,
                   padding: "1rem",
                   margin: "0.5rem",
+                  color,
                 }}
               >
                 {msg}
@@ -47,13 +50,9 @@ export const Register = () => {
             <form
               onSubmit={async (e) => {
                 e.preventDefault();
-                const response = await register(
-                  text,
-                  password,
-                  state?.from ? state.from : "/"
-                );
+                const response = await register(text, password);
                 console.log(response);
-                if (response?.success === true) {
+                if (response?.success) {
                   console.log(response.success);
                   setAlert({
                     status: response.success,
@@ -61,7 +60,8 @@ export const Register = () => {
                     backgroundColor: "green",
                     color: "#fff",
                   });
-                  setTimeout(() => setAlert(false), 3000);
+                  setTimeout(() => setAlert(false), 1000);
+                  setTimeout(() => navigate("/login"), 2000);
                 }
                 if (!response?.success) {
                   setAlert({
@@ -70,7 +70,7 @@ export const Register = () => {
                     backgroundColor: "red",
                     color: "#fff",
                   });
-                  setTimeout(() => setAlert(false), 3000);
+                  setTimeout(() => setAlert(false), 1000);
                 }
               }}
             >

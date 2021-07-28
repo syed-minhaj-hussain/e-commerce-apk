@@ -58,6 +58,7 @@ export const AuthProvider = ({ children }) => {
   const login = async (username, password, route) => {
     try {
       const { success } = await fakeFetch(username, password);
+      // console.log({ success });
       if (success === true) {
         setIsUserLoggedIn((prev) => !prev);
         localStorage.setItem("loginStatus", JSON.stringify({ status: true }));
@@ -65,6 +66,7 @@ export const AuthProvider = ({ children }) => {
       }
       return { success, path: route };
     } catch (err) {
+      // console.log({ err });
       return { err };
     }
   };
@@ -92,10 +94,12 @@ export const AuthProvider = ({ children }) => {
       const response = await fetchRegister(userName);
       if (response?.success && userName !== "" && password !== "") {
         setUsers({ ...users, data: [...users.data, { userName, password }] });
-        return { response };
+        console.log({ response });
+        return response;
       }
     } catch (err) {
-      return { err };
+      console.log({ err });
+      return err;
     }
   };
 
