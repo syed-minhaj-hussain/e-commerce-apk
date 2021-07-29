@@ -26,22 +26,7 @@ export const ProductListing = () => {
                   <p className={productStyle.subTitle}> ₹ {price}</p>
                 </div>
               </Link>
-              {!inStock && (
-                <p
-                  style={{
-                    position: "absolute",
-                    top: "10rem",
-                    left: "2.8rem",
-                    fontSize: "1.5rem",
-                    fontWeight: "400",
-                    backgroundColor: "#333",
-                    color: "#fff",
-                    padding: "1rem",
-                  }}
-                >
-                  Out of Stock
-                </p>
-              )}
+              {!inStock && <p className={productStyle.stock}>Out of Stock</p>}
               <ShowOrHideWishIcon
                 id={id}
                 iconPosition={productStyle.absolute}
