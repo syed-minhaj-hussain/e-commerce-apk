@@ -40,9 +40,11 @@ img {
 }
 .title {
   font-weight: 550;
+  margin-top: 0.1rem;
 }
 .subTitle {
   font-weight: 400;
+  margin-top: 0.1rem;
 }
 .btn {
   width: 100%;
@@ -53,7 +55,7 @@ img {
   border: 0.1rem solid #000;
   font-size: 0.9rem;
   font-weight: 470;
-  margin-top: 0.1rem;
+  margin-top: 0.4rem;
   position: relative;
   z-index: 5;
   transition: 0.2s;

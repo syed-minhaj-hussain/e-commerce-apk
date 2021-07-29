@@ -21,7 +21,6 @@ export const Wishlist = () => {
               <p className={cartStyle.title}> {name}</p>
               <p className={cartStyle.subTitle}> ₹ {price}</p>
 
-              <br />
               <div>
                 <button
                   className={cartStyle.btn}
