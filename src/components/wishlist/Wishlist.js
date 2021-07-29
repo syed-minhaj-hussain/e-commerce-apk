@@ -18,33 +18,35 @@ export const Wishlist = () => {
               </figure>
             </div>
             <div className={cartStyle.cardBody}>
-              <p className={cartStyle.title}> {name}</p>
-              <p className={cartStyle.subTitle}> ₹ {price}</p>
-
               <div>
-                <button
-                  className={cartStyle.btn}
-                  onClick={() =>
-                    dispatch({ type: "REMOVE-FROM-WISHLIST", payload: id })
-                  }
-                >
-                  Remove From Wishlist
-                </button>
-                {cart?.find((item) => item.id === id) ? null : (
+                <p className={cartStyle.title}> {name}</p>
+                <p className={cartStyle.subTitle}> ₹ {price}</p>
+
+                <div>
                   <button
                     className={cartStyle.btn}
                     onClick={() =>
-                      dispatch({
-                        type: "MOVE-TO-CART",
-                        payload: products?.find((item) => item.id === id),
-                      })
+                      dispatch({ type: "REMOVE-FROM-WISHLIST", payload: id })
                     }
-                    disabled={!inStock}
-                    style={{ opacity: `${!inStock ? 0.6 : 1}` }}
                   >
-                    Move To Cart
+                    Remove From Wishlist
                   </button>
-                )}
+                  {cart?.find((item) => item.id === id) ? null : (
+                    <button
+                      className={cartStyle.btn}
+                      onClick={() =>
+                        dispatch({
+                          type: "MOVE-TO-CART",
+                          payload: products?.find((item) => item.id === id),
+                        })
+                      }
+                      disabled={!inStock}
+                      style={{ opacity: `${!inStock ? 0.6 : 1}` }}
+                    >
+                      Move To Cart
+                    </button>
+                  )}
+                </div>
               </div>
             </div>
           </div>

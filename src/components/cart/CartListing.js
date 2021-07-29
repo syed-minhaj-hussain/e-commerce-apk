@@ -29,11 +29,11 @@ export const CartListing = () => {
                   <img className={cartStyle.img} src={img_1} alt={name} />
                 </figure>
               </div>
-              <div className={`${cartStyle.cardBody} ${cartStyle.cardItems}`}>
-                <p className={cartStyle.title}> {name}</p>
-                <p className={cartStyle.subTitle}> ₹ {priceOverQuantity}</p>
-                <div style={{ position: "relative" }}>
-                  <div className={cartStyle.upper}>
+              <div className={`${cartStyle.cardBody} `}>
+                <>
+                  <p className={cartStyle.title}> {name}</p>
+                  <p className={cartStyle.subTitle}> ₹ {priceOverQuantity}</p>
+                  <div style={{ position: "relative" }}>
                     <span style={{ position: "absolute", left: "0.5rem" }}>
                       qty:{" "}
                     </span>
@@ -58,9 +58,7 @@ export const CartListing = () => {
                       }
                     />
                   </div>
-                  <br />
-                  <div style={{ position: "absolute", top: "2rem" }}>
-                    <ShowOrHideWishlist id={id} btn={cartStyle.btn} />
+                  <div style={{ marginTop: "2rem" }}>
                     <button
                       className={cartStyle.btn}
                       onClick={() =>
@@ -70,7 +68,7 @@ export const CartListing = () => {
                       Remove From cart
                     </button>
                   </div>
-                </div>
+                </>
               </div>
             </div>
           );
