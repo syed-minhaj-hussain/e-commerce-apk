@@ -5,7 +5,7 @@ import { useAuthContext } from "../../context/AuthContext";
 
 export const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
-  const { isUserLoggedIn, setIsUserLoggedIn, logout } = useAuthContext();
+  const { isUserLoggedIn, logout } = useAuthContext();
   return (
     <nav className={navStyle.navbar}>
       <div className={navStyle.brandTitle}>Vintage-Mart</div>
@@ -36,6 +36,19 @@ export const Navbar = () => {
               end
             >
               Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/products"
+              activeStyle={{
+                fontWeight: "bold",
+                color: "white",
+              }}
+              className={navStyle.navLinks}
+              end
+            >
+              Products
             </NavLink>
           </li>
           <li>

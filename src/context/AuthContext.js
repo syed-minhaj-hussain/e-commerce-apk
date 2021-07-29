@@ -22,10 +22,6 @@ const usersDB = {
     },
   ],
 };
-const user1 = {
-  userName: "Test",
-  password: "Success",
-};
 
 export const AuthProvider = ({ children }) => {
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);

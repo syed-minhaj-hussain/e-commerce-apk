@@ -2,7 +2,7 @@ import { useWishCartContext } from "../../context/WishCartContext";
 import { useAuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-export const ShowOrHideAddToCart = ({ id, btn }) => {
+export const ShowOrHideAddToCart = ({ id, btn, isInStock }) => {
   const {
     state: { cart, products },
     dispatch,
@@ -33,6 +33,8 @@ export const ShowOrHideAddToCart = ({ id, btn }) => {
                 payload: products.find((item) => item.id === id),
               })
             }
+            disabled={!isInStock}
+            style={{ opacity: `${!isInStock ? 0.6 : 1}` }}
           >
             Add To Cart
           </button>

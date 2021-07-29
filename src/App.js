@@ -9,6 +9,7 @@ import { PrivateRoute } from "./components/privateRoutes/PrivateRoute";
 import { Route, Routes } from "react-router-dom";
 import { Navbar } from "./components/navbar/Navbar";
 import { useAuthContext } from "./context/AuthContext";
+import { ProductDetail } from "./components/productDetail/ProductDetail";
 function App() {
   const { isUserLoggedIn, setIsUserLoggedIn } = useAuthContext();
   useEffect(() => {
@@ -22,6 +23,8 @@ function App() {
       <Navbar />
       <Routes>
         <Route path="/" element={<ProductListing />} />
+        <Route path="/products" element={<ProductListing />} />
+        <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <PrivateRoute

@@ -38,6 +38,14 @@ export const reducerFunc = (state, action) => {
             : item
         ),
       };
+    case "MOVE-TO-CART":
+      return {
+        ...state,
+        wishlist: state.wishlist.filter(
+          (item) => item.id !== action.payload.id
+        ),
+        cart: [...state.cart, action.payload],
+      };
     default:
       return state;
   }

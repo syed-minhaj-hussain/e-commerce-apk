@@ -24,12 +24,12 @@ export const CartListing = () => {
           const priceOverQuantity = price * quantity;
           return (
             <div className={cartStyle.card} key={id}>
-              <div className={cartStyle.cardHead}>
+              <div className={`${cartStyle.cardHead} ${cartStyle.cardItems}`}>
                 <figure className={cartStyle.margin}>
                   <img className={cartStyle.img} src={img_1} alt={name} />
                 </figure>
               </div>
-              <div className={cartStyle.cardBody}>
+              <div className={`${cartStyle.cardBody} ${cartStyle.cardItems}`}>
                 <p className={cartStyle.title}> {name}</p>
                 <p className={cartStyle.subTitle}> ₹ {priceOverQuantity}</p>
                 <div style={{ position: "relative" }}>
