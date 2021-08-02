@@ -42,7 +42,7 @@ export const ShowOrHideWishIcon = ({ id, iconPosition }) => {
           onClick={() => {
             isUserLoggedIn
               ? dispatch({
-                  type: "ADD-TO-CART",
+                  type: "ADD-TO-WISHLIST",
                   payload: products.find((item) => item.id === id),
                 })
               : navigate("/login");

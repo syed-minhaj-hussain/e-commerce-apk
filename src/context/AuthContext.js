@@ -29,11 +29,12 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    localStorage.setItem("updatedUsers", JSON.stringify(users));
-  }, [users]);
-  useEffect(() => {
     setUsers(JSON.parse(localStorage.getItem("updatedUsers")));
   }, []);
+  useEffect(() => {
+    localStorage.setItem("updatedUsers", JSON.stringify(users));
+  }, [users]);
+
   const findUserByUserName = (userName) =>
     users?.data?.find((user) => user.userName === userName);
 
@@ -55,7 +56,10 @@ export const AuthProvider = ({ children }) => {
       // console.log({ success });
       if (success === true) {
         setIsUserLoggedIn((prev) => !prev);
-        localStorage.setItem("loginStatus", JSON.stringify({ status: true }));
+        localStorage.setItem(
+          "loginStatus",
+          JSON.stringify({ status: true, path: route })
+        );
         navigate(route);
       }
       return { success, path: route };

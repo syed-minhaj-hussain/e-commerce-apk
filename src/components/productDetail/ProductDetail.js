@@ -17,10 +17,7 @@ export const ProductDetail = () => {
     images: { img_1, img_2 },
     inStock,
     intro,
-    summary,
-    description,
     category,
-    additionalInfo,
     fastDelivery,
   } = products?.find((item) => item.id === Number(id));
   const [image, setImage] = useState(img_1);
@@ -61,7 +58,7 @@ export const ProductDetail = () => {
                   display: "flex",
                   flexDirection: "column",
                   justifyContent: "center",
-                  width: "100%",
+                  // width: "100%",
                   height: "100%",
                   alignItems: "flex-start",
                 }}

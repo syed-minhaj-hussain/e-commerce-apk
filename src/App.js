@@ -6,16 +6,18 @@ import { Wishlist } from "./components/wishlist/Wishlist";
 import { Login } from "./components/login/Login";
 import { Register } from "./components/register/Register";
 import { PrivateRoute } from "./components/privateRoutes/PrivateRoute";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useNavigate } from "react-router-dom";
 import { Navbar } from "./components/navbar/Navbar";
 import { useAuthContext } from "./context/AuthContext";
 import { ProductDetail } from "./components/productDetail/ProductDetail";
 function App() {
   const { isUserLoggedIn, setIsUserLoggedIn } = useAuthContext();
+  const navigate = useNavigate();
   useEffect(() => {
-    const status = JSON.parse(localStorage.getItem("loginStatus"));
-    if (status?.status === true) {
+    const response = JSON.parse(localStorage.getItem("loginStatus"));
+    if (response?.status === true) {
       setIsUserLoggedIn(true);
+      navigate(response?.path);
     }
   }, []);
   return (

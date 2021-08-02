@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useReducer,
-  useContext,
-  useEffect,
-  useState,
-} from "react";
+import { createContext, useReducer, useContext, useEffect } from "react";
 import { products } from "../productsDB";
 import { reducerFunc } from "../utilities";
 
@@ -17,27 +11,29 @@ export const WishCartProvider = ({ children }) => {
     wishlist: [],
   });
 
-  localStorage.setItem("MyName", "Minhaj");
   useEffect(() => {
     dispatch({
       type: "CART-UPDATED",
       payload: JSON.parse(localStorage.getItem("myCart")) || [],
     });
-    console.log(JSON.parse(localStorage.getItem("myCart")) || [{ a: "abc" }]);
+  }, []);
+  useEffect(() => {
+    dispatch({
+      type: "WISHLIST-UPDATED",
+      payload: JSON.parse(localStorage.getItem("myWishlist")) || [],
+    });
   }, []);
 
   useEffect(() => {
     if (state.cart) {
-      localStorage.setItem("myCart", JSON.stringify(state.cart || []));
-
-      console.log(
-        localStorage.setItem(
-          "myCart2",
-          JSON.stringify(state.cart || [{ a: "abc" }])
-        )
-      );
+      localStorage.setItem("myCart", JSON.stringify(state.cart));
     }
   }, [state.cart]);
+  useEffect(() => {
+    if (state.wishlist) {
+      localStorage.setItem("myWishlist", JSON.stringify(state.wishlist));
+    }
+  }, [state.wishlist]);
 
   return (
     <WishCartContext.Provider value={{ state, dispatch }}>
