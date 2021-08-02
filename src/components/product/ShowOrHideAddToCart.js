@@ -8,6 +8,7 @@ export const ShowOrHideAddToCart = ({ id, btn, isInStock }) => {
     dispatch,
   } = useWishCartContext();
   const { isUserLoggedIn } = useAuthContext();
+
   const navigate = useNavigate();
   return (
     <>
@@ -27,12 +28,12 @@ export const ShowOrHideAddToCart = ({ id, btn, isInStock }) => {
         ) : (
           <button
             className={btn}
-            onClick={() =>
+            onClick={() => {
               dispatch({
                 type: "ADD-TO-CART",
                 payload: products.find((item) => item.id === id),
-              })
-            }
+              });
+            }}
             disabled={!isInStock}
             style={{ opacity: `${!isInStock ? 0.6 : 1}` }}
           >

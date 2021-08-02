@@ -1,8 +1,6 @@
 import { useWishCartContext } from "../../context/WishCartContext";
 import { MdAdd, MdRemove } from "react-icons/md";
-// import { IoIosArrowForward } from "react-icons/io";
 import cartStyle from "./cart.module.css";
-import { ShowOrHideWishlist } from "./ShowOrHideWishlist";
 
 export const CartListing = () => {
   const {

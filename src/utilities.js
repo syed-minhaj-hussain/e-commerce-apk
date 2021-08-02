@@ -46,6 +46,9 @@ export const reducerFunc = (state, action) => {
         ),
         cart: [...state.cart, action.payload],
       };
+    case "CART-UPDATED":
+      return { ...state, cart: action.payload };
+
     default:
       return state;
   }
