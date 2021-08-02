@@ -34,6 +34,7 @@ export const Navbar = () => {
               }}
               className={navStyle.navLinks}
               end
+              onClick={() => setIsActive((prev) => !prev)}
             >
               Home
             </NavLink>
@@ -46,7 +47,7 @@ export const Navbar = () => {
                 color: "white",
               }}
               className={navStyle.navLinks}
-              end
+              onClick={() => setIsActive((prev) => !prev)}
             >
               Products
             </NavLink>
@@ -59,6 +60,7 @@ export const Navbar = () => {
                 color: "white",
               }}
               className={navStyle.navLinks}
+              onClick={() => setIsActive((prev) => !prev)}
             >
               Cart
             </NavLink>
@@ -71,22 +73,19 @@ export const Navbar = () => {
                 color: "white",
               }}
               className={navStyle.navLinks}
+              onClick={() => setIsActive((prev) => !prev)}
             >
               Wishlist
             </NavLink>
           </li>
-          <li>
+          <li className={`${isUserLoggedIn ? `${navStyle.logout}` : ""} `}>
             {isUserLoggedIn ? (
               <button
-                style={{
-                  margin: "1rem 2rem 0 0",
-                  backgroundColor: "inherit",
-                  border: "none",
-                  color: "inherit",
-                  fontSize: "1rem",
-                  padding: "0 0 0 1rem",
+                className={navStyle.last}
+                onClick={() => {
+                  logout();
+                  setIsActive((prev) => !prev);
                 }}
-                onClick={() => logout()}
               >
                 Logout
               </button>
@@ -98,6 +97,7 @@ export const Navbar = () => {
                   color: "white",
                 }}
                 className={navStyle.navLinks}
+                onClick={() => setIsActive((prev) => !prev)}
               >
                 Login
               </NavLink>
