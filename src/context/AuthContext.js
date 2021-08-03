@@ -29,11 +29,11 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setUsers(JSON.parse(localStorage.getItem("updatedUsers")) || []);
-  }, []);
-  useEffect(() => {
     localStorage.setItem("updatedUsers", JSON.stringify(users));
   }, [users]);
+  useEffect(() => {
+    setUsers(JSON.parse(localStorage.getItem("updatedUsers")) || []);
+  }, []);
 
   const findUserByUserName = (userName) =>
     users?.data?.find((user) => user.userName === userName);
