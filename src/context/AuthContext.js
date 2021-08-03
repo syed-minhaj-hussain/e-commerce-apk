@@ -29,7 +29,7 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setUsers(JSON.parse(localStorage.getItem("updatedUsers")));
+    setUsers(JSON.parse(localStorage.getItem("updatedUsers")) || []);
   }, []);
   useEffect(() => {
     localStorage.setItem("updatedUsers", JSON.stringify(users));
