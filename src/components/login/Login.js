@@ -26,7 +26,7 @@ export const Login = () => {
                   password,
                   state?.from ? state.from : "/"
                 );
-                // console.log(val);
+                console.log(val);
               }}
             >
               <div className={logStyle.inputs}>

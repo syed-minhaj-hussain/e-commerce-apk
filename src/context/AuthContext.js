@@ -29,11 +29,11 @@ export const AuthProvider = ({ children }) => {
   const navigate = useNavigate();
 
   useEffect(() => {
+    setUsers(JSON.parse(localStorage.getItem("updatedUsers")) || usersDB);
+  }, []);
+  useEffect(() => {
     localStorage.setItem("updatedUsers", JSON.stringify(users));
   }, [users]);
-  useEffect(() => {
-    setUsers(JSON.parse(localStorage.getItem("updatedUsers")) || []);
-  }, []);
 
   const findUserByUserName = (userName) =>
     users?.data?.find((user) => user.userName === userName);
@@ -53,7 +53,8 @@ export const AuthProvider = ({ children }) => {
   const login = async (username, password, route) => {
     try {
       const { success } = await fakeFetch(username, password);
-      // console.log({ success });
+
+      console.log({ success });
       if (success === true) {
         setIsUserLoggedIn((prev) => !prev);
         localStorage.setItem(
