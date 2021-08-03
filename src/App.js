@@ -1,5 +1,6 @@
 import "./App.css";
 import { useEffect } from "react";
+import { Home } from "./components/home/Home";
 import { ProductListing } from "./components/product/ProductListing";
 import { CartListing } from "./components/cart/CartListing";
 import { Wishlist } from "./components/wishlist/Wishlist";
@@ -24,7 +25,7 @@ function App() {
     <div className="App">
       <Navbar />
       <Routes>
-        <Route path="/" element={<ProductListing />} />
+        <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductListing />} />
         <Route path="/products/:id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
