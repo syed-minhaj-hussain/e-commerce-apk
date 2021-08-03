@@ -17,6 +17,7 @@ export const WishCartProvider = ({ children }) => {
       payload: JSON.parse(localStorage.getItem("myCart")) || [],
     });
   }, []);
+
   useEffect(() => {
     dispatch({
       type: "WISHLIST-UPDATED",
