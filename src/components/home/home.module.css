@@ -9,8 +9,25 @@
   max-width: 100vw;
   margin: 0 auto;
 }
-/* .carousel {
+.carousel {
   position: relative;
   width: 100%;
   overflow: hidden;
-} */
+}
+.navRight {
+  position: absolute;
+  top: 45%;
+  color: aliceblue;
+  right: 2rem;
+  font-size: 2rem;
+}
+.navLeft {
+  position: absolute;
+  top: 45%;
+  color: aliceblue;
+  left: 2rem;
+  font-size: 2rem;
+}
+.hide {
+  display: none;
+}
