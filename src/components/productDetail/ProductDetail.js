@@ -72,6 +72,24 @@ export const ProductDetail = () => {
                   >
                     {" "}
                     {name}
+                    <span>
+                      {" "}
+                      <p
+                        style={{
+                          padding: "0.3rem 1rem",
+                          marginTop: "0.5rem",
+                          color: "#000",
+                          backgroundColor: "#fff",
+                          borderRadius: "1.5rem",
+                          fontSize: "0.9rem",
+                          fontWeight: "600",
+                          display: "inline-block",
+                          textTransform: "capitalize",
+                        }}
+                      >
+                        {category}
+                      </p>
+                    </span>
                   </h1>
                   <h2
                     style={{
@@ -113,6 +131,7 @@ export const ProductDetail = () => {
                 >
                   {inStock ? "In Stock" : "Out of Stock!"}{" "}
                 </p>
+
                 {inStock && (
                   <p
                     style={{
