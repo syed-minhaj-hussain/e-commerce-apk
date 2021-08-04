@@ -4,6 +4,20 @@ import homeStyle from "./home.module.css";
 
 export const Carousel = () => {
   const [navId, setNavId] = useState(1);
+
+  // setInterval(() => {
+  //   if (navId === 1) {
+  //     setNavId((prev) => prev + 1);
+  //   }
+  //   if (navId === 2) {
+  //     setNavId((prev) => prev + 1);
+  //   }
+
+  //   if (navId === 3) {
+  //     setNavId(1);
+  //   }
+  // }, 4000);
+
   return (
     <div className={homeStyle.main}>
       {carouselItems?.map(({ id, name, image }) => (
