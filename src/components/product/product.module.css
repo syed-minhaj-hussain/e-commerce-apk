@@ -12,7 +12,6 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  /* grid-gap: 0.5rem; */
   grid-gap: 1rem;
   margin-top: 0.5rem;
 }
@@ -79,12 +78,13 @@ img {
 
 @media (max-width: 768px) {
   .grid {
-    grid-template-columns: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    padding: 0.5rem;
   }
   .stock {
     position: absolute;
-    top: 14rem;
-    left: 7.4rem;
+    top: 8rem;
+    left: 2rem;
     font-size: 1.5rem;
     font-weight: 400;
     background-color: #333;
