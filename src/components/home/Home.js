@@ -9,7 +9,7 @@ export const Home = () => {
     <>
       <Carousel />
       <Categories />
-      <h1 className={homeStyle.category}>Featured Categories</h1>
+      <h1 className={homeStyle.category}>Featured Products</h1>
       <Category category="essentials" />
     </>
   );
