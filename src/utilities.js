@@ -55,3 +55,16 @@ export const reducerFunc = (state, action) => {
       return state;
   }
 };
+
+export const reducer = (state, action) => {
+  switch (action.type) {
+    case "SORT":
+      return { ...state, sortBy: action.payload };
+    case "TOGGLE_INVENTORY":
+      return { ...state, showInventoryAll: !state.showInventoryAll };
+    case "TOGGLE_DELIVERY":
+      return { ...state, showFastDeliveryOnly: !state.showFastDeliveryOnly };
+    default:
+      return state;
+  }
+};
