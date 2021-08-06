@@ -12,12 +12,15 @@ export const ProductListing = () => {
   const {
     state: { products },
   } = useWishCartContext();
-  const [{ showInventoryAll, showFastDeliveryOnly, sortBy }, dispatch] =
-    useReducer(reducer, {
-      showInventoryAll: true,
-      showFastDeliveryOnly: false,
-      sortBy: "PRICE_LOW_TO_HIGH",
-    });
+  const [
+    { showInventoryAll, showFastDeliveryOnly, sortBy, maxValue },
+    dispatch,
+  ] = useReducer(reducer, {
+    showInventoryAll: true,
+    showFastDeliveryOnly: false,
+    sortBy: "PRICE_LOW_TO_HIGH",
+    maxValue: 4500,
+  });
   const [display, setDisplay] = useState(false);
 
   const getSortedData = (products, sortBy) => {
@@ -38,7 +41,8 @@ export const ProductListing = () => {
       .filter(({ fastDelivery }) =>
         showFastDeliveryOnly ? fastDelivery : true
       )
-      .filter(({ inStock }) => (showInventoryAll ? true : inStock));
+      .filter(({ inStock }) => (showInventoryAll ? true : inStock))
+      .filter((product) => product.price <= maxValue);
   };
 
   const sortedData = getSortedData(products, sortBy);
@@ -76,6 +80,7 @@ export const ProductListing = () => {
         dispatch={dispatch}
         display={display}
         setDisplay={setDisplay}
+        maxValue={maxValue}
       />
 
       <div className={productStyle.container}>

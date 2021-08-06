@@ -64,6 +64,8 @@ export const reducer = (state, action) => {
       return { ...state, showInventoryAll: !state.showInventoryAll };
     case "TOGGLE_DELIVERY":
       return { ...state, showFastDeliveryOnly: !state.showFastDeliveryOnly };
+    case "TOGGLE_RANGE":
+      return { ...state, maxValue: action.payload };
     default:
       return state;
   }

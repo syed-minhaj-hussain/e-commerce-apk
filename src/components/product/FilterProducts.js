@@ -9,6 +9,7 @@ export const FilterProducts = ({
   dispatch,
   display,
   setDisplay,
+  maxValue,
 }) => {
   return (
     <div
@@ -79,7 +80,17 @@ export const FilterProducts = ({
       </label>
       <label style={{ display: "block", marginTop: "1rem" }}>
         <h2> Price Range: </h2>
-        <input type="range" className={productStyle.inputRange} />
+        <input
+          type="range"
+          className={productStyle.inputRange}
+          min="500"
+          max="4500"
+          value={maxValue}
+          onChange={(e) =>
+            dispatch({ type: "TOGGLE_RANGE", payload: e.target.value })
+          }
+        />
+        <p style={{ textAlign: "center" }}>RS: {maxValue}</p>
       </label>
     </div>
   );
