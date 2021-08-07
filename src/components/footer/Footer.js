@@ -5,7 +5,11 @@ export const Footer = () => {
       <h1>
         Designed & Developed by{" "}
         <span>
-          <a href="https://syedminhajhussain.netlify.app/" target="_blank">
+          <a
+            href="https://syedminhajhussain.netlify.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             &nbsp; Syed Minhaj Hussain
           </a>
         </span>{" "}
