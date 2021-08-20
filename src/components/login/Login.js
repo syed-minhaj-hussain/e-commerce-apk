@@ -32,12 +32,12 @@ export const Login = () => {
               }}
             >
               <div className={logStyle.inputs}>
-                <label htmlFor="name">Username :</label>
+                <label htmlFor="name">Email :</label>
                 <input
-                  type="text"
+                  type="email"
                   name=""
                   id="name"
-                  placeholder="Enter Username..."
+                  placeholder="Enter Email..."
                   value={text}
                   onChange={(e) => setText(e.target.value)}
                 />
