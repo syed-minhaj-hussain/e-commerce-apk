@@ -1,12 +1,13 @@
 import { useState } from "react";
-import { useNavigate } from "react-router";
+import { useNavigate } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import regStyle from "./register.module.css";
 
 export const Register = () => {
-  const { isUserLoggedIn, register } = useAuthContext();
+  const { auth, register } = useAuthContext();
   const [text, setText] = useState("");
   const [password, setPassword] = useState("");
+  const [email, setEmail] = useState("");
   const [{ status, msg, backgroundColor, color }, setAlert] = useState({
     status: null,
     message: null,
@@ -14,7 +15,7 @@ export const Register = () => {
     color: "#fff",
   });
   const navigate = useNavigate();
-  console.log({ isUserLoggedIn });
+  console.log({ auth });
   return (
     <>
       <div className={regStyle.container}>
@@ -48,30 +49,12 @@ export const Register = () => {
               </p>
             )}
             <form
-              onSubmit={async (e) => {
+              onSubmit={(e) => {
                 e.preventDefault();
-                const response = await register(text, password);
-                console.log(response);
-                if (response?.success) {
-                  console.log(response.success);
-                  setAlert({
-                    status: response.success,
-                    msg: response?.message,
-                    backgroundColor: "green",
-                    color: "#fff",
-                  });
-                  setTimeout(() => setAlert(false), 1000);
-                  setTimeout(() => navigate("/login"), 2000);
-                }
-                if (!response?.success) {
-                  setAlert({
-                    status: response.success,
-                    msg: response.message,
-                    backgroundColor: "red",
-                    color: "#fff",
-                  });
-                  setTimeout(() => setAlert(false), 1000);
-                }
+                register(text, email, password);
+                setEmail("");
+                setText("");
+                setPassword("");
               }}
             >
               <div className={regStyle.inputs}>

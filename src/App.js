@@ -18,7 +18,11 @@ import { useWishCartContext } from "./context/WishCartContext";
 
 function App() {
   const { auth } = useAuthContext();
-  const { dispatch } = useWishCartContext();
+  const {
+    dispatch,
+    state: { products },
+  } = useWishCartContext();
+  console.log(products);
   useEffect(() => {
     (async function () {
       try {
@@ -41,7 +45,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/products" element={<ProductListing />} />
-        <Route path="/products/:id" element={<ProductDetail />} />
+        <Route path="/products/:_id" element={<ProductDetail />} />
         <Route path="/login" element={<Login />} />
         <Route path="/register" element={<Register />} />
         <Route path="/categories/bags" element={<Category category="bags" />} />

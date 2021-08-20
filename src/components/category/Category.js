@@ -35,11 +35,11 @@ export const Category = ({ category }) => {
                 </Link>
                 {!inStock && <p className={productStyle.stock}>Out of Stock</p>}
                 <ShowOrHideWishIcon
-                  id={_id}
+                  _id={_id}
                   iconPosition={productStyle.absolute}
                 />
                 <ShowOrHideAddToCart
-                  id={_id}
+                  _id={_id}
                   btn={productStyle.btn}
                   isInStock={inStock}
                 />

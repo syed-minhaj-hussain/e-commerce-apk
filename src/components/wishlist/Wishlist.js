@@ -1,12 +1,15 @@
+import { useAuthContext } from "../../context/AuthContext";
 import { useWishCartContext } from "../../context/WishCartContext";
 import cartStyle from "../cart/cart.module.css";
+import axios from "axios";
 
 export const Wishlist = () => {
   const {
     state: { wishlist, products, cart },
     dispatch,
   } = useWishCartContext();
-  console.log({ wishlist });
+  const { auth } = useAuthContext();
+  // console.log({ wishlist });
   return (
     <div className={cartStyle.container}>
       <div className={cartStyle.grid}>
@@ -25,9 +28,20 @@ export const Wishlist = () => {
                 <div>
                   <button
                     className={cartStyle.btn}
-                    onClick={() =>
-                      dispatch({ type: "REMOVE-FROM-WISHLIST", payload: _id })
-                    }
+                    onClick={async () => {
+                      dispatch({ type: "REMOVE-FROM-WISHLIST", payload: _id });
+                      try {
+                        const response = await axios.delete(
+                          `https://vintage-mart-backend.herokuapp.com/wishlist/${_id}`,
+                          { headers: { authorization: auth } }
+                        );
+                        if (response) {
+                          console.log(response.data.message);
+                        }
+                      } catch (err) {
+                        console.log({ err });
+                      }
+                    }}
                   >
                     Remove From Wishlist
                   </button>

@@ -10,6 +10,8 @@ export const WishCartProvider = ({ children }) => {
     wishlist: [],
   });
 
+  console.log(state.products);
+
   useEffect(() => {
     dispatch({
       type: "CART-UPDATED",

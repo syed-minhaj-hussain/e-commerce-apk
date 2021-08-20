@@ -9,24 +9,26 @@ export const reducerFunc = (state, action) => {
     case "REMOVE-FROM-WISHLIST":
       return {
         ...state,
-        wishlist: state.wishlist?.filter((item) => item.id !== action.payload),
+        wishlist: state.wishlist?.filter(
+          (item) => item?._id !== action.payload
+        ),
       };
     case "REMOVE-FROM-CART":
       return {
         ...state,
-        cart: state.cart?.filter((item) => item.id !== action.payload),
+        cart: state.cart?.filter((item) => item?._id !== action.payload),
       };
     case "MOVE-TO-WISHLIST":
       return {
         ...state,
-        cart: state.cart.filter((item) => item.id !== action.payload.id),
+        cart: state.cart.filter((item) => item?._id !== action.payload?._id),
         wishlist: [...state.wishlist, action.payload],
       };
     case "INCREMENT":
       return {
         ...state,
         cart: state.cart.map((item) =>
-          item.id === action.payload
+          item?._id === action.payload
             ? { ...item, quantity: item.quantity === 7 ? 7 : item.quantity + 1 }
             : item
         ),
@@ -35,7 +37,7 @@ export const reducerFunc = (state, action) => {
       return {
         ...state,
         cart: state?.cart?.map((item) =>
-          item.id === action.payload
+          item?._id === action.payload
             ? { ...item, quantity: item.quantity === 1 ? 1 : item.quantity - 1 }
             : item
         ),
@@ -44,7 +46,7 @@ export const reducerFunc = (state, action) => {
       return {
         ...state,
         wishlist: state.wishlist.filter(
-          (item) => item.id !== action.payload.id
+          (item) => item?._id !== action.payload?._id
         ),
         cart: [...state.cart, action.payload],
       };

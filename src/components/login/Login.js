@@ -1,15 +1,20 @@
-import { useState } from "react";
-import { useLocation } from "react-router";
+import { useState, useEffect } from "react";
+import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import logStyle from "./login.module.css";
 
 export const Login = () => {
-  const { isUserLoggedIn, login } = useAuthContext();
+  const { auth, login } = useAuthContext();
   const [text, setText] = useState("");
   const [password, setPassword] = useState("");
   const { state } = useLocation();
-  console.log({ isUserLoggedIn });
+  const navigate = useNavigate();
+  useEffect(() => {
+    if (auth) {
+      navigate("/");
+    }
+  }, []);
   return (
     <>
       <div className={logStyle.container}>
@@ -19,14 +24,11 @@ export const Login = () => {
               Enter Your Username & Password{" "}
             </h3>
             <form
-              onSubmit={async (e) => {
+              onSubmit={(e) => {
                 e.preventDefault();
-                const val = await login(
-                  text,
-                  password,
-                  state?.from ? state.from : "/"
-                );
-                console.log(val);
+                login(text, password, state?.from);
+                setText("");
+                setPassword("");
               }}
             >
               <div className={logStyle.inputs}>

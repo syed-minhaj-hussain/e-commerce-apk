@@ -7,21 +7,21 @@ export const ShowOrHideAddToCart = ({ _id, btn, isInStock }) => {
     state: { cart, products },
     dispatch,
   } = useWishCartContext();
-  const { isUserLoggedIn } = useAuthContext();
-
+  const { auth } = useAuthContext();
   const navigate = useNavigate();
   return (
     <>
-      {isUserLoggedIn ? (
-        cart?.find((item) => item._id === _id) ? (
+      {auth ? (
+        cart?.find((item) => item?._id === _id) ? (
           <button
             className={btn}
-            onClick={() =>
+            onClick={() => {
               dispatch({
                 type: "REMOVE-FROM-CART",
                 payload: _id,
-              })
-            }
+              });
+              console.log("remove");
+            }}
           >
             Remove From Cart
           </button>
@@ -31,7 +31,7 @@ export const ShowOrHideAddToCart = ({ _id, btn, isInStock }) => {
             onClick={() => {
               dispatch({
                 type: "ADD-TO-CART",
-                payload: products.find((item) => item._id === _id),
+                payload: products?.find((item) => item?._id === _id),
               });
             }}
             disabled={!isInStock}
@@ -44,10 +44,10 @@ export const ShowOrHideAddToCart = ({ _id, btn, isInStock }) => {
         <button
           className={btn}
           onClick={() => {
-            isUserLoggedIn
+            auth
               ? dispatch({
                   type: "ADD-TO-CART",
-                  payload: products.find((item) => item._id === _id),
+                  payload: products?.find((item) => item?._id === _id),
                 })
               : navigate("/login");
           }}

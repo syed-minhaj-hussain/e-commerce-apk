@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useParams } from "react-router";
+import { useParams } from "react-router-dom";
 import { useWishCartContext } from "../../context/WishCartContext";
 import { ShowOrHideAddToCart } from "../product/ShowOrHideAddToCart";
 import { ShowOrHideWishIcon } from "../product/ShowOrHideWishIcon";
@@ -7,27 +7,24 @@ import productDetail from "./productDetail.module.css";
 
 export const ProductDetail = () => {
   const { _id } = useParams();
-  //   console.log(id);
+  console.log(_id);
   const {
     state: { products },
   } = useWishCartContext();
-  const {
-    name,
-    price,
-    images: { img_1, img_2 },
-    inStock,
-    intro,
-    category,
-    fastDelivery,
-  } = products?.find((item) => item._id === _id);
-  const [image, setImage] = useState(img_1);
+  console.log({ products });
+  const product = products?.find((item) => item?._id === _id);
+  const [image, setImage] = useState(product?.images?.img_1);
   return (
     <>
       <main className={productDetail.main}>
         <div className={productDetail.flex}>
           <div className={productDetail.leftSide}>
             <figure>
-              <img className={productDetail.img} src={image} alt={name} />
+              <img
+                className={productDetail.img}
+                src={image}
+                alt={product?.name}
+              />
               <div
                 style={{
                   display: "flex",
@@ -37,15 +34,15 @@ export const ProductDetail = () => {
               >
                 <img
                   className={`${productDetail.subImg} `}
-                  src={img_1}
-                  alt={name}
-                  onClick={() => setImage(img_1)}
+                  src={product?.images?.img_1}
+                  alt={product?.name}
+                  onClick={() => setImage(product?.images?.img_1)}
                 />
                 <img
                   className={`${productDetail.subImg} ${productDetail.subImg_2}`}
-                  src={img_2}
-                  alt={name}
-                  onClick={() => setImage(img_2)}
+                  src={product?.images?.img_2}
+                  alt={product?.name}
+                  onClick={() => setImage(product?.images?.img_2)}
                 />
               </div>
             </figure>
@@ -71,7 +68,7 @@ export const ProductDetail = () => {
                     }}
                   >
                     {" "}
-                    {name}
+                    {product?.name}
                     <span>
                       {" "}
                       <p
@@ -87,7 +84,7 @@ export const ProductDetail = () => {
                           textTransform: "capitalize",
                         }}
                       >
-                        {category}
+                        {product?.category}
                       </p>
                     </span>
                   </h1>
@@ -99,10 +96,10 @@ export const ProductDetail = () => {
                       display: "inline",
                     }}
                   >
-                    ₹ {price}
+                    ₹ {product?.price}
                   </h2>
                   <ShowOrHideWishIcon
-                    id={_id}
+                    _id={product?._id}
                     iconPosition={productDetail.icon}
                   />
                 </div>
@@ -116,35 +113,37 @@ export const ProductDetail = () => {
                     margin: "0.6rem 0.6rem 0.6rem 0",
                   }}
                 >
-                  {intro}
+                  {product?.intro}
                 </p>
                 <p
                   style={{
                     padding: "0.4rem 1rem",
                     marginTop: "0.5rem",
                     color: "#fff",
-                    backgroundColor: `${inStock ? "green" : "red"}`,
+                    backgroundColor: `${product?.inStock ? "green" : "red"}`,
                     borderRadius: "1.5rem",
                     fontSize: "0.8rem",
                     fontWeight: "500",
                   }}
                 >
-                  {inStock ? "In Stock" : "Out of Stock!"}{" "}
+                  {product?.inStock ? "In Stock" : "Out of Stock!"}{" "}
                 </p>
 
-                {inStock && (
+                {product?.inStock && (
                   <p
                     style={{
                       padding: "0.4rem 1rem",
                       marginTop: "0.5rem",
                       color: "#fff",
-                      backgroundColor: `${fastDelivery ? "green" : "red"}`,
+                      backgroundColor: `${
+                        product?.fastDelivery ? "green" : "red"
+                      }`,
                       borderRadius: "1.5rem",
                       fontSize: "0.8rem",
                       fontWeight: "500",
                     }}
                   >
-                    {fastDelivery
+                    {product?.fastDelivery
                       ? "Fast Delivery Available"
                       : "Delivery May Takes 1 Week"}
                   </p>
@@ -152,7 +151,7 @@ export const ProductDetail = () => {
                 <ShowOrHideAddToCart
                   id={_id}
                   btn={productDetail.btn}
-                  isInStock={inStock}
+                  isInStock={product?.inStock}
                 />
               </div>
             </div>

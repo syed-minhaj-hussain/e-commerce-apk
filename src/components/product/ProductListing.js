@@ -12,6 +12,7 @@ export const ProductListing = () => {
   const {
     state: { products },
   } = useWishCartContext();
+  console.log(products);
   const [
     { showInventoryAll, showFastDeliveryOnly, sortBy, maxValue },
     dispatch,
@@ -25,10 +26,10 @@ export const ProductListing = () => {
 
   const getSortedData = (products, sortBy) => {
     if (sortBy === "PRICE_LOW_TO_HIGH") {
-      return products.sort((a, b) => a["price"] - b["price"]);
+      return products?.sort((a, b) => a["price"] - b["price"]);
     }
     if (sortBy === "PRICE_HIGH_TO_LOW") {
-      return products.sort((a, b) => b["price"] - a["price"]);
+      return products?.sort((a, b) => b["price"] - a["price"]);
     }
     return products;
   };
@@ -38,11 +39,11 @@ export const ProductListing = () => {
     { showFastDeliveryOnly, showInventoryAll }
   ) => {
     return sortedData
-      .filter(({ fastDelivery }) =>
+      ?.filter(({ fastDelivery }) =>
         showFastDeliveryOnly ? fastDelivery : true
       )
-      .filter(({ inStock }) => (showInventoryAll ? true : inStock))
-      .filter((product) => product.price <= maxValue);
+      ?.filter(({ inStock }) => (showInventoryAll ? true : inStock))
+      ?.filter((product) => product.price <= maxValue);
   };
 
   const sortedData = getSortedData(products, sortBy);
@@ -109,11 +110,11 @@ export const ProductListing = () => {
                     <p className={productStyle.stock}>Out of Stock</p>
                   )}
                   <ShowOrHideWishIcon
-                    id={_id}
+                    _id={_id}
                     iconPosition={productStyle.absolute}
                   />
                   <ShowOrHideAddToCart
-                    id={_id}
+                    _id={_id}
                     btn={productStyle.btn}
                     isInStock={inStock}
                   />
