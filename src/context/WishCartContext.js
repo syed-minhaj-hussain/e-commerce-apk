@@ -14,22 +14,6 @@ export const WishCartProvider = ({ children }) => {
 
   const { auth } = useAuthContext();
 
-  console.log(state.products);
-
-  // useEffect(() => {
-  //   dispatch({
-  //     type: "CART-UPDATED",
-  //     payload: JSON.parse(localStorage.getItem("myCart")) || [],
-  //   });
-  // }, []);
-
-  // useEffect(() => {
-  //   dispatch({
-  //     type: "WISHLIST-UPDATED",
-  //     payload: JSON.parse(localStorage.getItem("myWishlist")) || [],
-  //   });
-  // }, []);
-
   useEffect(() => {
     localStorage.setItem("myCart", JSON.stringify(state.cart));
   }, [state.cart]);

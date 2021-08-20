@@ -69,6 +69,17 @@ export const Register = () => {
                 />
               </div>
               <div className={regStyle.inputs}>
+                <label htmlFor="name">Email :</label>
+                <input
+                  type="text"
+                  name=""
+                  id="name"
+                  placeholder="Enter Email..."
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                />
+              </div>
+              <div className={regStyle.inputs}>
                 <label htmlFor="password">Password:</label>
                 <input
                   type="password"

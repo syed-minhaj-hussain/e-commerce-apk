@@ -66,20 +66,6 @@ export const Wishlist = () => {
                             console.log({ err });
                           }
                         })();
-                        (async function () {
-                          try {
-                            const response = await axios.post(
-                              `https://vintage-mart-backend.herokuapp.com/cart/`,
-                              products?.find((item) => item._id === _id),
-                              { headers: { authorization: auth } }
-                            );
-                            if (response) {
-                              console.log(response.data.message);
-                            }
-                          } catch (err) {
-                            console.log({ err });
-                          }
-                        })();
                       }}
                       disabled={!inStock}
                       style={{ opacity: `${!inStock ? 0.6 : 1}` }}

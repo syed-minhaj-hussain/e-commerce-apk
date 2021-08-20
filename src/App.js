@@ -22,7 +22,7 @@ function App() {
     dispatch,
     state: { products },
   } = useWishCartContext();
-  console.log(products);
+
   useEffect(() => {
     (async function () {
       try {
@@ -34,7 +34,7 @@ function App() {
             type: "UPLOAD-PRODUCTS",
             payload: response?.data?.products,
           });
-          console.log(response);
+          // console.log(response);
         }
       } catch (err) {
         console.log({ err });
@@ -51,7 +51,7 @@ function App() {
             type: "UPLOAD-WISHLIST",
             payload: response?.data?.wishlist,
           });
-          console.log(response);
+          // console.log(response);
         }
       } catch (err) {
         console.log({ err });
@@ -64,11 +64,11 @@ function App() {
           { headers: { authorization: auth } }
         );
         if (response) {
-          // dispatch({
-          //   type: "UPLOAD-CART",
-          //   payload: response?.data?.cartItems,
-          // });
-          console.log(response);
+          dispatch({
+            type: "UPLOAD-CART",
+            payload: response.data[0].cart ? response.data[0].cart : [],
+          });
+          // console.log(response.data[0].cart);
         }
       } catch (err) {
         console.log({ err });
