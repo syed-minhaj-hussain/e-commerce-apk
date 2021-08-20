@@ -1,5 +1,4 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
-import { products } from "../productsDB";
 import { reducerFunc } from "../utilities";
 
 const WishCartContext = createContext();
@@ -7,7 +6,7 @@ const WishCartContext = createContext();
 export const WishCartProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducerFunc, {
     cart: [],
-    products,
+    products: null,
     wishlist: [],
   });
 

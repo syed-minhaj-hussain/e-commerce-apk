@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import axios from "axios";
 import { useAuthContext } from "./context/AuthContext";
 import { Login } from "./components/login/Login";
 import { Register } from "./components/register/Register";
@@ -15,16 +16,19 @@ import { Category } from "./components/category/Category";
 import { Footer } from "./components/footer/Footer";
 
 function App() {
-  const { isUserLoggedIn, setIsUserLoggedIn } = useAuthContext();
-  const navigate = useNavigate();
+  const { auth } = useAuthContext();
   useEffect(() => {
-    const response = JSON.parse(localStorage.getItem("loginStatus"));
-    if (response?.status === true) {
-      setIsUserLoggedIn(true);
-      navigate(response?.path);
-      console.log(response?.path);
-    }
-  }, []);
+    (async function () {
+      try {
+        const response = await axios.get(
+          "https://vintage-mart-backend.herokuapp.com/products"
+        );
+        console.log(response);
+      } catch (err) {
+        console.log({ err });
+      }
+    })();
+  });
   return (
     <div className="App">
       <Navbar />
@@ -47,16 +51,8 @@ function App() {
           path="/categories/interior"
           element={<Category category="interior" />}
         />
-        <PrivateRoute
-          isUserLoggedIn={isUserLoggedIn}
-          path="/cart"
-          element={<CartListing />}
-        />
-        <PrivateRoute
-          isUserLoggedIn={isUserLoggedIn}
-          path="/wishlist"
-          element={<Wishlist />}
-        />
+        <PrivateRoute auth={auth} path="/cart" element={<CartListing />} />
+        <PrivateRoute auth={auth} path="/wishlist" element={<Wishlist />} />
       </Routes>
       <Footer />
     </div>
