@@ -18,10 +18,10 @@ export const CartListing = () => {
     <div className={cartStyle.container}>
       <h2>Total Amount : {total} </h2>
       <div className={cartStyle.grid}>
-        {cart?.map(({ id, name, images: { img_1 }, quantity, price }) => {
+        {cart?.map(({ _id, name, images: { img_1 }, quantity, price }) => {
           const priceOverQuantity = price * quantity;
           return (
-            <div className={cartStyle.card} key={id}>
+            <div className={cartStyle.card} key={_id}>
               <div className={`${cartStyle.cardHead} ${cartStyle.cardItems}`}>
                 <figure className={cartStyle.margin}>
                   <img className={cartStyle.img} src={img_1} alt={name} />
@@ -38,7 +38,7 @@ export const CartListing = () => {
                     <MdRemove
                       className={cartStyle.iconDecrease}
                       onClick={() =>
-                        dispatch({ type: "DECREMENT", payload: id })
+                        dispatch({ type: "DECREMENT", payload: _id })
                       }
                     />
                     <span
@@ -52,7 +52,7 @@ export const CartListing = () => {
                     <MdAdd
                       className={cartStyle.iconIncrease}
                       onClick={() =>
-                        dispatch({ type: "INCREMENT", payload: id })
+                        dispatch({ type: "INCREMENT", payload: _id })
                       }
                     />
                   </div>
@@ -60,7 +60,7 @@ export const CartListing = () => {
                     <button
                       className={cartStyle.btn}
                       onClick={() =>
-                        dispatch({ type: "REMOVE-FROM-CART", payload: id })
+                        dispatch({ type: "REMOVE-FROM-CART", payload: _id })
                       }
                     >
                       Remove From cart

@@ -2,7 +2,7 @@ import { useWishCartContext } from "../../context/WishCartContext";
 import { useAuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 
-export const ShowOrHideAddToCart = ({ id, btn, isInStock }) => {
+export const ShowOrHideAddToCart = ({ _id, btn, isInStock }) => {
   const {
     state: { cart, products },
     dispatch,
@@ -13,13 +13,13 @@ export const ShowOrHideAddToCart = ({ id, btn, isInStock }) => {
   return (
     <>
       {isUserLoggedIn ? (
-        cart?.find((item) => item.id === id) ? (
+        cart?.find((item) => item._id === _id) ? (
           <button
             className={btn}
             onClick={() =>
               dispatch({
                 type: "REMOVE-FROM-CART",
-                payload: id,
+                payload: _id,
               })
             }
           >
@@ -31,7 +31,7 @@ export const ShowOrHideAddToCart = ({ id, btn, isInStock }) => {
             onClick={() => {
               dispatch({
                 type: "ADD-TO-CART",
-                payload: products.find((item) => item.id === id),
+                payload: products.find((item) => item._id === _id),
               });
             }}
             disabled={!isInStock}
@@ -47,7 +47,7 @@ export const ShowOrHideAddToCart = ({ id, btn, isInStock }) => {
             isUserLoggedIn
               ? dispatch({
                   type: "ADD-TO-CART",
-                  payload: products.find((item) => item.id === id),
+                  payload: products.find((item) => item._id === _id),
                 })
               : navigate("/login");
           }}

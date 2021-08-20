@@ -14,21 +14,27 @@ import { CartListing } from "./components/cart/CartListing";
 import { Wishlist } from "./components/wishlist/Wishlist";
 import { Category } from "./components/category/Category";
 import { Footer } from "./components/footer/Footer";
+import { useWishCartContext } from "./context/WishCartContext";
 
 function App() {
   const { auth } = useAuthContext();
+  const { dispatch } = useWishCartContext();
   useEffect(() => {
     (async function () {
       try {
         const response = await axios.get(
           "https://vintage-mart-backend.herokuapp.com/products"
         );
+        dispatch({
+          type: "UPLOAD-PRODUCTS",
+          payload: response?.data?.products,
+        });
         console.log(response);
       } catch (err) {
         console.log({ err });
       }
     })();
-  });
+  }, []);
   return (
     <div className="App">
       <Navbar />

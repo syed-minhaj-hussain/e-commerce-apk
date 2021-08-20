@@ -10,8 +10,8 @@ export const Wishlist = () => {
   return (
     <div className={cartStyle.container}>
       <div className={cartStyle.grid}>
-        {wishlist?.map(({ id, name, images: { img_1 }, price, inStock }) => (
-          <div className={cartStyle.card} key={id}>
+        {wishlist?.map(({ _id, name, images: { img_1 }, price, inStock }) => (
+          <div className={cartStyle.card} key={_id}>
             <div className={cartStyle.cardHead}>
               <figure className={cartStyle.margin}>
                 <img className={cartStyle.img} src={img_1} alt={name} />
@@ -26,18 +26,18 @@ export const Wishlist = () => {
                   <button
                     className={cartStyle.btn}
                     onClick={() =>
-                      dispatch({ type: "REMOVE-FROM-WISHLIST", payload: id })
+                      dispatch({ type: "REMOVE-FROM-WISHLIST", payload: _id })
                     }
                   >
                     Remove From Wishlist
                   </button>
-                  {cart?.find((item) => item.id === id) ? null : (
+                  {cart?.find((item) => item._id === _id) ? null : (
                     <button
                       className={cartStyle.btn}
                       onClick={() =>
                         dispatch({
                           type: "MOVE-TO-CART",
-                          payload: products?.find((item) => item.id === id),
+                          payload: products?.find((item) => item._id === _id),
                         })
                       }
                       disabled={!inStock}

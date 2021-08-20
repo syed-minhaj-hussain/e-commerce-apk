@@ -10,7 +10,7 @@ import { ImHome } from "react-icons/im";
 
 export const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
-  const { isUserLoggedIn, logout } = useAuthContext();
+  const { auth, logout } = useAuthContext();
   const {
     state: { cart, wishlist },
   } = useWishCartContext();
@@ -124,8 +124,8 @@ export const Navbar = () => {
               </p>
             </NavLink>
           </li>
-          <li className={`${isUserLoggedIn ? `${navStyle.logout}` : ""} `}>
-            {isUserLoggedIn ? (
+          <li className={`${auth ? `${navStyle.logout}` : ""} `}>
+            {auth ? (
               <button
                 className={navStyle.last}
                 onClick={() => {

@@ -1,5 +1,7 @@
 export const reducerFunc = (state, action) => {
   switch (action.type) {
+    case "UPLOAD-PRODUCTS":
+      return { ...state, products: action.payload };
     case "ADD-TO-CART":
       return { ...state, cart: [...state.cart, action.payload] };
     case "ADD-TO-WISHLIST":

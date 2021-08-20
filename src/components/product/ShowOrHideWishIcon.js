@@ -4,7 +4,7 @@ import { useAuthContext } from "../../context/AuthContext";
 import { useWishCartContext } from "../../context/WishCartContext";
 
 // import productStyle from "./product.module.css";
-export const ShowOrHideWishIcon = ({ id, iconPosition }) => {
+export const ShowOrHideWishIcon = ({ _id, iconPosition }) => {
   const {
     state: { products, wishlist },
     dispatch,
@@ -15,13 +15,13 @@ export const ShowOrHideWishIcon = ({ id, iconPosition }) => {
   return (
     <>
       {isUserLoggedIn ? (
-        wishlist?.find((item) => item.id === id) ? (
+        wishlist?.find((item) => item._id === _id) ? (
           <MdFavorite
             className={iconPosition}
             onClick={() =>
               dispatch({
                 type: "REMOVE-FROM-WISHLIST",
-                payload: id,
+                payload: _id,
               })
             }
           />
@@ -31,7 +31,7 @@ export const ShowOrHideWishIcon = ({ id, iconPosition }) => {
             onClick={() =>
               dispatch({
                 type: "ADD-TO-WISHLIST",
-                payload: products?.find((item) => item.id === id),
+                payload: products?.find((item) => item._id === _id),
               })
             }
           />
@@ -43,7 +43,7 @@ export const ShowOrHideWishIcon = ({ id, iconPosition }) => {
             isUserLoggedIn
               ? dispatch({
                   type: "ADD-TO-WISHLIST",
-                  payload: products.find((item) => item.id === id),
+                  payload: products.find((item) => item._id === _id),
                 })
               : navigate("/login");
           }}

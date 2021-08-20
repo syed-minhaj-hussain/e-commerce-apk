@@ -14,14 +14,17 @@ export const Category = ({ category }) => {
     <div className={productStyle.container}>
       <div className={productStyle.grid}>
         {getFilteredProducts?.map(
-          ({ id, name, images: { img_1 }, price, inStock }) => (
-            <div key={id}>
+          ({ _id, name, images: { img_1 }, price, inStock }) => (
+            <div key={_id}>
               <div
                 className={productStyle.card}
-                key={id}
+                key={_id}
                 style={{ opacity: `${!inStock ? 0.7 : 1}` }}
               >
-                <Link to={`/products/${id}`} style={{ textDecoration: "none" }}>
+                <Link
+                  to={`/products/${_id}`}
+                  style={{ textDecoration: "none" }}
+                >
                   <figure>
                     <img src={img_1} alt={name} />
                   </figure>
@@ -32,11 +35,11 @@ export const Category = ({ category }) => {
                 </Link>
                 {!inStock && <p className={productStyle.stock}>Out of Stock</p>}
                 <ShowOrHideWishIcon
-                  id={id}
+                  id={_id}
                   iconPosition={productStyle.absolute}
                 />
                 <ShowOrHideAddToCart
-                  id={id}
+                  id={_id}
                   btn={productStyle.btn}
                   isInStock={inStock}
                 />

@@ -6,7 +6,7 @@ import { ShowOrHideWishIcon } from "../product/ShowOrHideWishIcon";
 import productDetail from "./productDetail.module.css";
 
 export const ProductDetail = () => {
-  const { id } = useParams();
+  const { _id } = useParams();
   //   console.log(id);
   const {
     state: { products },
@@ -19,7 +19,7 @@ export const ProductDetail = () => {
     intro,
     category,
     fastDelivery,
-  } = products?.find((item) => item.id === Number(id));
+  } = products?.find((item) => item._id === _id);
   const [image, setImage] = useState(img_1);
   return (
     <>
@@ -102,7 +102,7 @@ export const ProductDetail = () => {
                     ₹ {price}
                   </h2>
                   <ShowOrHideWishIcon
-                    id={Number(id)}
+                    id={_id}
                     iconPosition={productDetail.icon}
                   />
                 </div>
@@ -150,7 +150,7 @@ export const ProductDetail = () => {
                   </p>
                 )}
                 <ShowOrHideAddToCart
-                  id={Number(id)}
+                  id={_id}
                   btn={productDetail.btn}
                   isInStock={inStock}
                 />

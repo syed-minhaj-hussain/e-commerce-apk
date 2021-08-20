@@ -1,13 +1,13 @@
 import { useWishCartContext } from "../../context/WishCartContext";
 
-export const ShowOrHideWishlist = ({ id, btn }) => {
+export const ShowOrHideWishlist = ({ _id, btn }) => {
   const {
     state: { products, wishlist },
     dispatch,
   } = useWishCartContext();
   return (
     <>
-      {wishlist?.find((item) => item.id === id) ? (
+      {wishlist?.find((item) => item._id === _id) ? (
         <button
           className={btn}
           style={{ backgroundColor: "#ccc", color: "#fff" }}
@@ -21,7 +21,7 @@ export const ShowOrHideWishlist = ({ id, btn }) => {
           onClick={() =>
             dispatch({
               type: "MOVE-TO-WISHLIST",
-              payload: products?.find((item) => item.id === id),
+              payload: products?.find((item) => item._id === _id),
             })
           }
         >
