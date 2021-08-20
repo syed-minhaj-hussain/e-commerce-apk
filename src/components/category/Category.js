@@ -7,7 +7,7 @@ export const Category = ({ category }) => {
   const {
     state: { products },
   } = useWishCartContext();
-  const getFilteredProducts = products.filter(
+  const getFilteredProducts = products?.filter(
     (item) => item.category === category
   );
   return (
