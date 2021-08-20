@@ -29,11 +29,47 @@ function App() {
         const response = await axios.get(
           "https://vintage-mart-backend.herokuapp.com/products"
         );
-        dispatch({
-          type: "UPLOAD-PRODUCTS",
-          payload: response?.data?.products,
-        });
-        console.log(response);
+        if (response) {
+          dispatch({
+            type: "UPLOAD-PRODUCTS",
+            payload: response?.data?.products,
+          });
+          console.log(response);
+        }
+      } catch (err) {
+        console.log({ err });
+      }
+    })();
+    (async function () {
+      try {
+        const response = await axios.get(
+          "https://vintage-mart-backend.herokuapp.com/wishlist",
+          { headers: { authorization: auth } }
+        );
+        if (response) {
+          dispatch({
+            type: "UPLOAD-WISHLIST",
+            payload: response?.data?.wishlist,
+          });
+          console.log(response);
+        }
+      } catch (err) {
+        console.log({ err });
+      }
+    })();
+    (async function () {
+      try {
+        const response = await axios.get(
+          "https://vintage-mart-backend.herokuapp.com/cart",
+          { headers: { authorization: auth } }
+        );
+        if (response) {
+          // dispatch({
+          //   type: "UPLOAD-CART",
+          //   payload: response?.data?.cartItems,
+          // });
+          console.log(response);
+        }
       } catch (err) {
         console.log({ err });
       }

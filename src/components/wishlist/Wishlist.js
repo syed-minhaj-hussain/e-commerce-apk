@@ -48,12 +48,39 @@ export const Wishlist = () => {
                   {cart?.find((item) => item._id === _id) ? null : (
                     <button
                       className={cartStyle.btn}
-                      onClick={() =>
+                      onClick={() => {
                         dispatch({
                           type: "MOVE-TO-CART",
                           payload: products?.find((item) => item._id === _id),
-                        })
-                      }
+                        });
+                        (async function () {
+                          try {
+                            const response = await axios.delete(
+                              `https://vintage-mart-backend.herokuapp.com/wishlist/${_id}`,
+                              { headers: { authorization: auth } }
+                            );
+                            if (response) {
+                              console.log(response.data.message);
+                            }
+                          } catch (err) {
+                            console.log({ err });
+                          }
+                        })();
+                        (async function () {
+                          try {
+                            const response = await axios.post(
+                              `https://vintage-mart-backend.herokuapp.com/cart/`,
+                              products?.find((item) => item._id === _id),
+                              { headers: { authorization: auth } }
+                            );
+                            if (response) {
+                              console.log(response.data.message);
+                            }
+                          } catch (err) {
+                            console.log({ err });
+                          }
+                        })();
+                      }}
                       disabled={!inStock}
                       style={{ opacity: `${!inStock ? 0.6 : 1}` }}
                     >

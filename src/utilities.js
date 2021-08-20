@@ -2,6 +2,10 @@ export const reducerFunc = (state, action) => {
   switch (action.type) {
     case "UPLOAD-PRODUCTS":
       return { ...state, products: action.payload };
+    case "UPLOAD-WISHLIST":
+      return { ...state, wishlist: action.payload };
+    case "UPLOAD-CART":
+      return { ...state, cart: action.payload };
     case "ADD-TO-CART":
       return { ...state, cart: [...state.cart, action.payload] };
     case "ADD-TO-WISHLIST":
@@ -27,7 +31,7 @@ export const reducerFunc = (state, action) => {
     case "INCREMENT":
       return {
         ...state,
-        cart: state.cart.map((item) =>
+        cart: state?.cart?.map((item) =>
           item?._id === action.payload
             ? { ...item, quantity: item.quantity === 7 ? 7 : item.quantity + 1 }
             : item
@@ -52,8 +56,8 @@ export const reducerFunc = (state, action) => {
       };
     case "CART-UPDATED":
       return { ...state, cart: action.payload };
-    case "WISHLIST-UPDATED":
-      return { ...state, wishlist: action.payload };
+    // case "WISHLIST-UPDATED":
+    //   return { ...state, wishlist: action.payload };
 
     default:
       return state;

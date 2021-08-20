@@ -7,7 +7,7 @@ export const CartListing = () => {
     state: { cart },
     dispatch,
   } = useWishCartContext();
-  const { total } = cart.reduce(
+  const { total } = cart?.reduce(
     (acc, { price, quantity }) => ({
       ...acc,
       total: acc.total + price * quantity,
