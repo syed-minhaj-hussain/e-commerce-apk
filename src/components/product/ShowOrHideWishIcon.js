@@ -1,0 +1,93 @@
+import { MdFavoriteBorder, MdFavorite } from "react-icons/md";
+import { useNavigate } from "react-router";
+import { useAuthContext } from "../../context/AuthContext";
+import { useWishCartContext } from "../../context/WishCartContext";
+import axios from "axios";
+
+// import productStyle from "./product.module.css";
+export const ShowOrHideWishIcon = ({ _id, iconPosition }) => {
+  const {
+    state: { products, wishlist },
+    dispatch,
+  } = useWishCartContext();
+  const { auth } = useAuthContext();
+  const navigate = useNavigate();
+  // console.log(iconPosition);
+  const findProduct = products?.find((item) => item?._id === _id);
+  return (
+    <>
+      {auth ? (
+        wishlist?.find((item) => item?._id === _id) ? (
+          <MdFavorite
+            className={iconPosition}
+            onClick={async () => {
+              dispatch({
+                type: "REMOVE-FROM-WISHLIST",
+                payload: _id,
+              });
+              try {
+                const response = await axios.delete(
+                  `https://vintage-mart-backend.herokuapp.com/wishlist/${_id}`,
+                  { headers: { authorization: auth } }
+                );
+                if (response) {
+                  console.log(response.data.message);
+                }
+              } catch (err) {
+                console.log({ err });
+              }
+            }}
+          />
+        ) : (
+          <MdFavoriteBorder
+            className={iconPosition}
+            onClick={async () => {
+              dispatch({
+                type: "ADD-TO-WISHLIST",
+                payload: products?.find((item) => item?._id === _id),
+              });
+              try {
+                const response = await axios.post(
+                  `https://vintage-mart-backend.herokuapp.com/wishlist`,
+                  findProduct,
+                  { headers: { authorization: auth } }
+                );
+                if (response) {
+                  console.log(response.data.message);
+                }
+              } catch (err) {
+                console.log({ err });
+              }
+            }}
+          />
+        )
+      ) : (
+        <MdFavoriteBorder
+          className={iconPosition}
+          onClick={async () => {
+            if (auth) {
+              dispatch({
+                type: "ADD-TO-WISHLIST",
+                payload: products.find((item) => item?._id === _id),
+              });
+              try {
+                const response = await axios.post(
+                  `https://vintage-mart-backend.herokuapp.com/wishlist`,
+                  findProduct,
+                  { headers: { authorization: auth } }
+                );
+                if (response) {
+                  console.log(response.data.message);
+                }
+              } catch (err) {
+                console.log({ err });
+              }
+            } else {
+              navigate("/login");
+            }
+          }}
+        />
+      )}
+    </>
+  );
+};
