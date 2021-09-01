@@ -149,7 +149,7 @@ export const ProductDetail = () => {
                   </p>
                 )}
                 <ShowOrHideAddToCart
-                  id={_id}
+                  _id={_id}
                   btn={productDetail.btn}
                   isInStock={product?.inStock}
                 />
