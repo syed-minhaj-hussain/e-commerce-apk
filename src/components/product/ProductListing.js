@@ -111,6 +111,7 @@ export const ProductListing = () => {
                   )}
                   <ShowOrHideWishIcon
                     _id={_id}
+                    name={name}
                     iconPosition={productStyle.absolute}
                   />
                   <ShowOrHideAddToCart

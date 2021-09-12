@@ -120,7 +120,7 @@ export const Navbar = () => {
                   fontSize: "0.7rem",
                 }}
               >
-                {wishlist.length}
+                {wishlist?.length ? wishlist.length : 0}
               </p>
             </NavLink>
           </li>

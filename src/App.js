@@ -18,11 +18,12 @@ import { useWishCartContext } from "./context/WishCartContext";
 
 function App() {
   const { auth } = useAuthContext();
+  // console.log({ auth: JSON?.parse(auth) });
+  console.log(auth);
   const {
     dispatch,
     state: { products },
   } = useWishCartContext();
-
   useEffect(() => {
     (async function () {
       try {
@@ -40,41 +41,49 @@ function App() {
         console.log({ err });
       }
     })();
-    (async function () {
-      try {
-        const response = await axios.get(
-          "https://vintage-mart-backend.herokuapp.com/wishlist",
-          { headers: { authorization: auth } }
-        );
-        if (response) {
-          dispatch({
-            type: "UPLOAD-WISHLIST",
-            payload: response?.data?.wishlist,
-          });
-          // console.log(response);
-        }
-      } catch (err) {
-        console.log({ err });
-      }
-    })();
-    (async function () {
-      try {
-        const response = await axios.get(
-          "https://vintage-mart-backend.herokuapp.com/cart",
-          { headers: { authorization: auth } }
-        );
-        if (response) {
-          dispatch({
-            type: "UPLOAD-CART",
-            payload: response.data[0].cart ? response.data[0].cart : [],
-          });
-          // console.log(response.data[0].cart);
-        }
-      } catch (err) {
-        console.log({ err });
-      }
-    })();
   }, []);
+  useEffect(() => {
+    if (auth) {
+      (async function () {
+        try {
+          const response = await axios.get(
+            "https://vintage-mart-backend.herokuapp.com/wishlist",
+            { headers: { authorization: auth } }
+          );
+          // const response = await axios.get("http://localhost:5000/wishlist", {
+          //   headers: { authorization: auth },
+          // });
+          if (response) {
+            dispatch({
+              type: "UPLOAD-WISHLIST",
+              payload: response?.data?.wishlist,
+              // payload: response?.data?.wishlist[0]?.wishlist,
+            });
+            console.log({ wishlistResponse: response });
+          }
+        } catch (err) {
+          console.log({ err });
+        }
+      })();
+      (async function () {
+        try {
+          const response = await axios.get(
+            "https://vintage-mart-backend.herokuapp.com/cart",
+            { headers: { authorization: auth } }
+          );
+          if (response) {
+            dispatch({
+              type: "UPLOAD-CART",
+              payload: response.data[0].cart ? response.data[0].cart : [],
+            });
+            console.log({ cartResponse: response.data[0].cart });
+          }
+        } catch (err) {
+          console.log({ err });
+        }
+      })();
+    }
+  }, [auth]);
   return (
     <div className="App">
       <Navbar />

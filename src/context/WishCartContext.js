@@ -18,8 +18,8 @@ export const WishCartProvider = ({ children }) => {
     localStorage.setItem("myCart", JSON.stringify(state.cart));
   }, [state.cart]);
   useEffect(() => {
-    setTimeout(
-      (async function () {
+    (async function () {
+      if (auth) {
         try {
           const response = await axios.post(
             "https://vintage-mart-backend.herokuapp.com/cart",
@@ -30,10 +30,32 @@ export const WishCartProvider = ({ children }) => {
         } catch (err) {
           console.log({ err });
         }
-      })(),
-      2000
-    );
+      }
+    })();
   }, [state?.cart]);
+  useEffect(() => {
+    (async function () {
+      console.log("Wishlist Updated");
+      if (auth) {
+        try {
+          const response = await axios.get(
+            "https://vintage-mart-backend.herokuapp.com/wishlist",
+
+            { headers: { authorization: auth } }
+          );
+          console.log(response);
+          if (response.success === true) {
+            dispatch({
+              type: "UPLOAD-WISHLIST",
+              payload: response?.data?.wishlist,
+            });
+          }
+        } catch (err) {
+          console.log({ err });
+        }
+      }
+    })();
+  }, [state?.wishlist]);
 
   return (
     <WishCartContext.Provider value={{ state, dispatch }}>

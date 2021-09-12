@@ -36,6 +36,7 @@ export const Category = ({ category }) => {
                 {!inStock && <p className={productStyle.stock}>Out of Stock</p>}
                 <ShowOrHideWishIcon
                   _id={_id}
+                  name={name}
                   iconPosition={productStyle.absolute}
                 />
                 <ShowOrHideAddToCart

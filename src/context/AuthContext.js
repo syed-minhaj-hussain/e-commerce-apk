@@ -20,6 +20,7 @@ export const AuthProvider = ({ children }) => {
       if (response) {
         console.log({ response });
         const authToken = response?.data?.authtoken;
+        console.log({ authToken });
         setAuth(authToken);
         localStorage.setItem("token", JSON.stringify(authToken));
         navigate(route ? route : "/");

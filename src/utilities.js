@@ -14,7 +14,7 @@ export const reducerFunc = (state, action) => {
       return {
         ...state,
         wishlist: state.wishlist?.filter(
-          (item) => item?._id !== action.payload
+          (item) => item?.name !== action.payload
         ),
       };
     case "REMOVE-FROM-CART":
@@ -50,7 +50,7 @@ export const reducerFunc = (state, action) => {
       return {
         ...state,
         wishlist: state.wishlist.filter(
-          (item) => item?._id !== action.payload?._id
+          (item) => item?.name !== action.payload?.name
         ),
         cart: [...state.cart, action.payload],
       };

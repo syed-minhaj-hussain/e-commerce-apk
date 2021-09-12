@@ -5,7 +5,7 @@ import { useWishCartContext } from "../../context/WishCartContext";
 import axios from "axios";
 
 // import productStyle from "./product.module.css";
-export const ShowOrHideWishIcon = ({ _id, iconPosition }) => {
+export const ShowOrHideWishIcon = ({ _id, name, iconPosition }) => {
   const {
     state: { products, wishlist },
     dispatch,
@@ -17,24 +17,27 @@ export const ShowOrHideWishIcon = ({ _id, iconPosition }) => {
   return (
     <>
       {auth ? (
-        wishlist?.find((item) => item?._id === _id) ? (
+        wishlist?.find((item) => item?.name === name) ? (
           <MdFavorite
             className={iconPosition}
             onClick={async () => {
               dispatch({
                 type: "REMOVE-FROM-WISHLIST",
-                payload: _id,
+                payload: name,
+                // payload: wishlist?.find((item) => item?.name === name),
               });
-              try {
-                const response = await axios.delete(
-                  `https://vintage-mart-backend.herokuapp.com/wishlist/${_id}`,
-                  { headers: { authorization: auth } }
-                );
-                if (response) {
-                  console.log(response.data.message);
+              if (auth) {
+                try {
+                  const response = await axios.delete(
+                    `https://vintage-mart-backend.herokuapp.com/wishlist/${_id}`,
+                    { headers: { authorization: auth } }
+                  );
+                  if (response) {
+                    console.log(response.data.message);
+                  }
+                } catch (err) {
+                  console.log({ err });
                 }
-              } catch (err) {
-                console.log({ err });
               }
             }}
           />
@@ -46,17 +49,43 @@ export const ShowOrHideWishIcon = ({ _id, iconPosition }) => {
                 type: "ADD-TO-WISHLIST",
                 payload: products?.find((item) => item?._id === _id),
               });
-              try {
-                const response = await axios.post(
-                  `https://vintage-mart-backend.herokuapp.com/wishlist`,
-                  findProduct,
-                  { headers: { authorization: auth } }
-                );
-                if (response) {
-                  console.log(response.data.message);
+              console.log({ findProduct });
+              console.log({
+                getWishlistId: wishlist?.find((item) => item?.prodId === _id),
+              });
+              if (auth) {
+                try {
+                  const response = await axios.post(
+                    `https://vintage-mart-backend.herokuapp.com/wishlist`,
+                    {
+                      name: findProduct?.name,
+                      description: findProduct?.description,
+                      intro: findProduct?.intro,
+                      additionalInfo: findProduct?.additionalInfo,
+                      images: findProduct?.images,
+                      summary: findProduct?.summary,
+                      price: findProduct?.price,
+                      category: findProduct?.category,
+                      inStock: findProduct?.inStock,
+                      fastDelivery: findProduct?.fastDelivery,
+                      quantity: findProduct?.quantity,
+                      prodId: findProduct?._id,
+                    },
+                    { headers: { authorization: auth } }
+                  );
+                  // const response = await axios.post(
+                  //   `https://vintage-mart-backend.herokuapp.com/wishlist`,
+                  //   findProduct,
+                  //   { headers: { authorization: auth } }
+                  // );
+
+                  if (response) {
+                    // console.log(response.data.message);
+                    console.log({ response });
+                  }
+                } catch (err) {
+                  console.log({ err });
                 }
-              } catch (err) {
-                console.log({ err });
               }
             }}
           />
@@ -71,9 +100,27 @@ export const ShowOrHideWishIcon = ({ _id, iconPosition }) => {
                 payload: products.find((item) => item?._id === _id),
               });
               try {
+                // const response = await axios.post(
+                //   `https://vintage-mart-backend.herokuapp.com/wishlist`,
+                //   findProduct,
+                //   { headers: { authorization: auth } }
+                // );
                 const response = await axios.post(
                   `https://vintage-mart-backend.herokuapp.com/wishlist`,
-                  findProduct,
+                  {
+                    name: findProduct?.name,
+                    description: findProduct?.description,
+                    intro: findProduct?.intro,
+                    additionalInfo: findProduct?.additionalInfo,
+                    images: findProduct?.images,
+                    summary: findProduct?.summary,
+                    price: findProduct?.price,
+                    category: findProduct?.category,
+                    inStock: findProduct?.inStock,
+                    fastDelivery: findProduct?.fastDelivery,
+                    quantity: findProduct?.quantity,
+                    prodId: findProduct?._id,
+                  },
                   { headers: { authorization: auth } }
                 );
                 if (response) {
