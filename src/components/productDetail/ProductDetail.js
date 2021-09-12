@@ -100,6 +100,7 @@ export const ProductDetail = () => {
                   </h2>
                   <ShowOrHideWishIcon
                     _id={product?._id}
+                    name={product?.name}
                     iconPosition={productDetail.icon}
                   />
                 </div>
