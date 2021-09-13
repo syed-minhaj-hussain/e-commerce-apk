@@ -46,7 +46,7 @@ export const WishCartProvider = ({ children }) => {
               { headers: { authorization: auth } }
             );
             // console.log(response);
-            if (response.success === true) {
+            if (response?.data?.success === true) {
               dispatch({
                 type: "UPLOAD-WISHLIST",
                 payload: response?.data?.wishlist,
