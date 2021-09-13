@@ -11,6 +11,31 @@ export const Wishlist = () => {
   } = useWishCartContext();
   const { auth } = useAuthContext();
   const { toast, runToast } = useToastContext();
+  useEffect(() => {
+    (async function () {
+      // console.log("Wishlist Updated");
+      if (auth) {
+        // setTimeout(async () => {
+        try {
+          const response = await axios.get(
+            "https://vintage-mart-backend.herokuapp.com/wishlist",
+
+            { headers: { authorization: auth } }
+          );
+          // console.log(response);
+          if (response?.data?.success === true) {
+            dispatch({
+              type: "UPLOAD-WISHLIST",
+              payload: response?.data?.wishlist,
+            });
+          }
+        } catch (err) {
+          console.log({ err });
+        }
+        // }, 1000);
+      }
+    })();
+  }, [state?.wishlist]);
   return (
     <div className={cartStyle.container}>
       <div className={cartStyle.grid}>
