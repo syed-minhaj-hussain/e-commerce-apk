@@ -12,7 +12,7 @@ export const ProductListing = () => {
   const {
     state: { products },
   } = useWishCartContext();
-  console.log(products);
+  // console.log(products);
   const [
     { showInventoryAll, showFastDeliveryOnly, sortBy, maxValue },
     dispatch,
@@ -52,7 +52,7 @@ export const ProductListing = () => {
     showFastDeliveryOnly,
     showInventoryAll,
   });
-  console.log({ filteredData });
+  // console.log({ filteredData });
 
   return (
     <div style={{ position: "relative", zIndex: "1" }}>

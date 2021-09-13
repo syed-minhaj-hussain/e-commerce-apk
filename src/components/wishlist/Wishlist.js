@@ -2,6 +2,7 @@ import { useAuthContext } from "../../context/AuthContext";
 import { useWishCartContext } from "../../context/WishCartContext";
 import cartStyle from "../cart/cart.module.css";
 import axios from "axios";
+import { useToastContext } from "../../context/ToastContext";
 
 export const Wishlist = () => {
   const {
@@ -9,7 +10,7 @@ export const Wishlist = () => {
     dispatch,
   } = useWishCartContext();
   const { auth } = useAuthContext();
-  // console.log({ wishlist });
+  const { toast, runToast } = useToastContext();
   return (
     <div className={cartStyle.container}>
       <div className={cartStyle.grid}>
@@ -41,6 +42,7 @@ export const Wishlist = () => {
                           );
                           if (response) {
                             console.log(response.data.message);
+                            runToast(toast.success, response.data.message);
                           }
                         } catch (err) {
                           console.log({ err });
@@ -67,6 +69,7 @@ export const Wishlist = () => {
                               );
                               if (response) {
                                 console.log(response.data.message);
+                                runToast(toast.success, response.data.message);
                               }
                             } catch (err) {
                               console.log({ err });

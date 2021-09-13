@@ -1,12 +1,14 @@
 import { useWishCartContext } from "../../context/WishCartContext";
 import { MdAdd, MdRemove } from "react-icons/md";
 import cartStyle from "./cart.module.css";
+import { useToastContext } from "../../context/ToastContext";
 
 export const CartListing = () => {
   const {
     state: { cart },
     dispatch,
   } = useWishCartContext();
+  const { toast, runToast } = useToastContext();
   const { total } = cart?.reduce(
     (acc, { price, quantity }) => ({
       ...acc,
@@ -59,9 +61,11 @@ export const CartListing = () => {
                   <div style={{ marginTop: "2rem" }}>
                     <button
                       className={cartStyle.btn}
-                      onClick={() =>
-                        dispatch({ type: "REMOVE-FROM-CART", payload: _id })
-                      }
+                      onClick={() => {
+                        dispatch({ type: "REMOVE-FROM-CART", payload: _id });
+
+                        runToast(toast.success, "Item Removed From Cart");
+                      }}
                     >
                       Remove From cart
                     </button>

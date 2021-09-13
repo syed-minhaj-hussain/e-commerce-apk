@@ -1,6 +1,7 @@
 import { useWishCartContext } from "../../context/WishCartContext";
 import { useAuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { useToastContext } from "../../context/ToastContext";
 
 export const ShowOrHideAddToCart = ({ _id, btn, isInStock }) => {
   const {
@@ -9,6 +10,8 @@ export const ShowOrHideAddToCart = ({ _id, btn, isInStock }) => {
   } = useWishCartContext();
   const { auth } = useAuthContext();
   const navigate = useNavigate();
+  const { toast, runToast } = useToastContext();
+
   return (
     <>
       {auth ? (
@@ -20,7 +23,8 @@ export const ShowOrHideAddToCart = ({ _id, btn, isInStock }) => {
                 type: "REMOVE-FROM-CART",
                 payload: _id,
               });
-              console.log("remove");
+              runToast(toast.success, "Item Removed From Cart");
+              // console.log("remove");
             }}
           >
             Remove From Cart
@@ -33,6 +37,7 @@ export const ShowOrHideAddToCart = ({ _id, btn, isInStock }) => {
                 type: "ADD-TO-CART",
                 payload: products?.find((item) => item?._id === _id),
               });
+              runToast(toast.success, "Item Added To Cart");
             }}
             disabled={!isInStock}
             style={{ opacity: `${!isInStock ? 0.6 : 1}` }}
@@ -44,12 +49,16 @@ export const ShowOrHideAddToCart = ({ _id, btn, isInStock }) => {
         <button
           className={btn}
           onClick={() => {
-            auth
-              ? dispatch({
-                  type: "ADD-TO-CART",
-                  payload: products?.find((item) => item?._id === _id),
-                })
-              : navigate("/login");
+            if (auth) {
+              dispatch({
+                type: "ADD-TO-CART",
+                payload: products?.find((item) => item?._id === _id),
+              });
+              runToast(toast.success, "Item Added To Cart");
+            } else {
+              runToast(toast.error, "Please Login");
+              navigate("/login");
+            }
           }}
         >
           Add To Cart

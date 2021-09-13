@@ -1,6 +1,7 @@
 import "./App.css";
 import { useEffect } from "react";
 import { Route, Routes, useNavigate } from "react-router-dom";
+import "react-toastify/dist/ReactToastify.css";
 import axios from "axios";
 import { useAuthContext } from "./context/AuthContext";
 import { Login } from "./components/login/Login";
@@ -15,11 +16,12 @@ import { Wishlist } from "./components/wishlist/Wishlist";
 import { Category } from "./components/category/Category";
 import { Footer } from "./components/footer/Footer";
 import { useWishCartContext } from "./context/WishCartContext";
+import { useToastContext } from "./context/ToastContext";
 
 function App() {
   const { auth } = useAuthContext();
-  // console.log({ auth: JSON?.parse(auth) });
-  console.log(auth);
+  // console.log(auth);
+  const { ToastContainer } = useToastContext();
   const {
     dispatch,
     state: { products },
@@ -59,7 +61,7 @@ function App() {
               payload: response?.data?.wishlist,
               // payload: response?.data?.wishlist[0]?.wishlist,
             });
-            console.log({ wishlistResponse: response });
+            // console.log({ wishlistResponse: response });
           }
         } catch (err) {
           console.log({ err });
@@ -76,7 +78,7 @@ function App() {
               type: "UPLOAD-CART",
               payload: response.data[0].cart ? response.data[0].cart : [],
             });
-            console.log({ cartResponse: response.data[0].cart });
+            // console.log({ cartResponse: response.data[0].cart });
           }
         } catch (err) {
           console.log({ err });
@@ -109,6 +111,19 @@ function App() {
         <PrivateRoute auth={auth} path="/cart" element={<CartListing />} />
         <PrivateRoute auth={auth} path="/wishlist" element={<Wishlist />} />
       </Routes>
+      <ToastContainer
+        style={{ maxWidth: "400px" }}
+        position="top-right"
+        autoClose={3000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+        theme="colored"
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
       <Footer />
     </div>
   );

@@ -20,13 +20,14 @@ export const WishCartProvider = ({ children }) => {
   useEffect(() => {
     (async function () {
       if (auth) {
+        // console.log("CART");
         try {
           const response = await axios.post(
             "https://vintage-mart-backend.herokuapp.com/cart",
             state?.cart,
             { headers: { authorization: auth } }
           );
-          // console.log(response?.data?.savedPlaylist);
+          // console.log({ cartResponse: response });
         } catch (err) {
           console.log({ err });
         }
@@ -35,24 +36,26 @@ export const WishCartProvider = ({ children }) => {
   }, [state?.cart]);
   useEffect(() => {
     (async function () {
-      console.log("Wishlist Updated");
+      // console.log("Wishlist Updated");
       if (auth) {
-        try {
-          const response = await axios.get(
-            "https://vintage-mart-backend.herokuapp.com/wishlist",
+        setTimeout(async () => {
+          try {
+            const response = await axios.get(
+              "https://vintage-mart-backend.herokuapp.com/wishlist",
 
-            { headers: { authorization: auth } }
-          );
-          console.log(response);
-          if (response.success === true) {
-            dispatch({
-              type: "UPLOAD-WISHLIST",
-              payload: response?.data?.wishlist,
-            });
+              { headers: { authorization: auth } }
+            );
+            // console.log(response);
+            if (response.success === true) {
+              dispatch({
+                type: "UPLOAD-WISHLIST",
+                payload: response?.data?.wishlist,
+              });
+            }
+          } catch (err) {
+            console.log({ err });
           }
-        } catch (err) {
-          console.log({ err });
-        }
+        }, 2000);
       }
     })();
   }, [state?.wishlist]);

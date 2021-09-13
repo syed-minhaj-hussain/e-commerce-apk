@@ -3,6 +3,7 @@ import { useNavigate } from "react-router";
 import { useAuthContext } from "../../context/AuthContext";
 import { useWishCartContext } from "../../context/WishCartContext";
 import axios from "axios";
+import { useToastContext } from "../../context/ToastContext";
 
 // import productStyle from "./product.module.css";
 export const ShowOrHideWishIcon = ({ _id, name, iconPosition }) => {
@@ -12,6 +13,7 @@ export const ShowOrHideWishIcon = ({ _id, name, iconPosition }) => {
   } = useWishCartContext();
   const { auth } = useAuthContext();
   const navigate = useNavigate();
+  const { toast, runToast } = useToastContext();
   // console.log(iconPosition);
   const findProduct = products?.find((item) => item?._id === _id);
   return (
@@ -21,6 +23,9 @@ export const ShowOrHideWishIcon = ({ _id, name, iconPosition }) => {
           <MdFavorite
             className={iconPosition}
             onClick={async () => {
+              const getId = wishlist.find((item) => item.name === name);
+              // console.log(getId._id);
+              // console.log(_id);
               dispatch({
                 type: "REMOVE-FROM-WISHLIST",
                 payload: name,
@@ -29,11 +34,12 @@ export const ShowOrHideWishIcon = ({ _id, name, iconPosition }) => {
               if (auth) {
                 try {
                   const response = await axios.delete(
-                    `https://vintage-mart-backend.herokuapp.com/wishlist/${_id}`,
+                    `https://vintage-mart-backend.herokuapp.com/wishlist/${getId._id}`,
                     { headers: { authorization: auth } }
                   );
-                  if (response) {
-                    console.log(response.data.message);
+                  if (response?.data?.success === true) {
+                    // console.log({ wishlistResp: response.data.message });
+                    runToast(toast.success, response?.data?.message);
                   }
                 } catch (err) {
                   console.log({ err });
@@ -49,10 +55,8 @@ export const ShowOrHideWishIcon = ({ _id, name, iconPosition }) => {
                 type: "ADD-TO-WISHLIST",
                 payload: products?.find((item) => item?._id === _id),
               });
-              console.log({ findProduct });
-              console.log({
-                getWishlistId: wishlist?.find((item) => item?.prodId === _id),
-              });
+              // console.log({ findProduct });
+
               if (auth) {
                 try {
                   const response = await axios.post(
@@ -79,9 +83,9 @@ export const ShowOrHideWishIcon = ({ _id, name, iconPosition }) => {
                   //   { headers: { authorization: auth } }
                   // );
 
-                  if (response) {
+                  if (response?.data?.success === true) {
                     // console.log(response.data.message);
-                    console.log({ response });
+                    runToast(toast.success, response?.data?.message);
                   }
                 } catch (err) {
                   console.log({ err });
@@ -123,13 +127,15 @@ export const ShowOrHideWishIcon = ({ _id, name, iconPosition }) => {
                   },
                   { headers: { authorization: auth } }
                 );
-                if (response) {
-                  console.log(response.data.message);
+                if (response?.data?.success === true) {
+                  // console.log(response.data.message);
+                  runToast(toast.success, response?.data?.message);
                 }
               } catch (err) {
                 console.log({ err });
               }
             } else {
+              runToast(toast.error, "Please Login");
               navigate("/login");
             }
           }}

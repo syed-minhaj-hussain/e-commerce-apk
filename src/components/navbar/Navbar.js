@@ -7,13 +7,16 @@ import { FaShoppingCart } from "react-icons/fa";
 import { HiOutlineHeart } from "react-icons/hi";
 import { BiShoppingBag } from "react-icons/bi";
 import { ImHome } from "react-icons/im";
+import { useToastContext } from "../../context/ToastContext";
 
 export const Navbar = () => {
   const [isActive, setIsActive] = useState(false);
   const { auth, logout } = useAuthContext();
+  const { toast, runToast } = useToastContext();
   const {
     state: { cart, wishlist },
   } = useWishCartContext();
+
   return (
     <nav className={navStyle.navbar}>
       <div className={navStyle.brandTitle}>Vintage-Mart</div>
@@ -75,7 +78,12 @@ export const Navbar = () => {
               }}
               className={navStyle.navLinks}
               style={{ position: "relative" }}
-              onClick={() => setIsActive((prev) => !prev)}
+              onClick={() => {
+                if (!auth) {
+                  runToast(toast.error, "Please Login");
+                }
+                setIsActive((prev) => !prev);
+              }}
             >
               <FaShoppingCart style={{ fontSize: "1.1rem" }} />
               <p
@@ -105,7 +113,14 @@ export const Navbar = () => {
               }}
               className={navStyle.navLinks}
               style={{ position: "relative" }}
-              onClick={() => setIsActive((prev) => !prev)}
+              onClick={() => {
+                if (!auth) {
+                  if (!auth) {
+                    runToast(toast.error, "Please Login");
+                  }
+                }
+                setIsActive((prev) => !prev);
+              }}
             >
               <HiOutlineHeart style={{ fontSize: "1.25rem" }} />
               <p
