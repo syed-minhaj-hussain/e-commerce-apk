@@ -35,7 +35,7 @@ export const Wishlist = () => {
         // }, 1000);
       }
     })();
-  }, [state?.wishlist]);
+  }, []);
   return (
     <div className={cartStyle.container}>
       <div className={cartStyle.grid}>
