@@ -55,7 +55,7 @@ export const WishCartProvider = ({ children }) => {
           } catch (err) {
             console.log({ err });
           }
-        }, 2000);
+        }, 1000);
       }
     })();
   }, [state?.wishlist]);
