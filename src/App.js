@@ -24,7 +24,7 @@ function App() {
   const { ToastContainer } = useToastContext();
   const {
     dispatch,
-    state: { products },
+    state: { wishlist, cart },
   } = useWishCartContext();
   useEffect(() => {
     (async function () {
@@ -124,7 +124,7 @@ function App() {
         draggable
         pauseOnHover
       />
-      <Footer />
+      {cart?.length > 0 && wishlist?.length > 0 && <Footer />}
     </div>
   );
 }
