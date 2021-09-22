@@ -56,6 +56,8 @@ export const reducerFunc = (state, action) => {
       };
     case "CART-UPDATED":
       return { ...state, cart: action.payload };
+    case "RESET-CART":
+      return { ...state, cart: [] };
     // case "WISHLIST-UPDATED":
     //   return { ...state, wishlist: action.payload };
 
