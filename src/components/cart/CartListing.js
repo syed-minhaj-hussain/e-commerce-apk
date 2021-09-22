@@ -34,9 +34,9 @@ export const CartListing = () => {
       { headers: { authorization: auth } }
     );
     const { success } = response.data;
-    console.log("Response:", response);
-    console.log("Status:", response.data.status);
-    console.log("StatusType:", typeof response?.data?.status);
+    // console.log("Response:", response);
+    // console.log("Status:", response.data.status);
+    // console.log("StatusType:", typeof response?.data?.status);
     if (success) {
       dispatch({ type: "RESET-CART" });
       toast("Success! Check email for details", { type: "success" });
