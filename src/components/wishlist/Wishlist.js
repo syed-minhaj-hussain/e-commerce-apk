@@ -4,6 +4,7 @@ import { useWishCartContext } from "../../context/WishCartContext";
 import cartStyle from "../cart/cart.module.css";
 import axios from "axios";
 import { useToastContext } from "../../context/ToastContext";
+import { useNavigate } from "react-router";
 
 export const Wishlist = () => {
   const {
@@ -11,6 +12,7 @@ export const Wishlist = () => {
     dispatch,
   } = useWishCartContext();
   const { auth } = useAuthContext();
+  const navigate = useNavigate();
   const { toast, runToast } = useToastContext();
   useEffect(() => {
     (async function () {
@@ -39,6 +41,27 @@ export const Wishlist = () => {
   }, []);
   return (
     <div className={cartStyle.container}>
+      {wishlist?.length < 1 && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            maxWidth: "100%",
+            height: "85vh",
+          }}
+        >
+          <h1>Your Wishlist Is Empty!!</h1>
+          <button
+            style={{ width: "200px", padding: "0.6rem", marginTop: "0.5rem" }}
+            className={cartStyle.btn}
+            onClick={() => navigate("/products")}
+          >
+            Browse Products
+          </button>
+        </div>
+      )}
       <div className={cartStyle.grid}>
         {wishlist?.map(
           ({ _id, name, images: { img_1 }, price, inStock, prodId }) => (
