@@ -7,12 +7,13 @@ import { ShowOrHideAddToCart } from "./ShowOrHideAddToCart";
 import { FilterProducts } from "./FilterProducts";
 import { reducer } from "../../utilities";
 import { BsFunnelFill } from "react-icons/bs";
+import Spinner from "./spinner.gif";
 
 export const ProductListing = () => {
   const {
     state: { products },
   } = useWishCartContext();
-  // console.log(products);
+  console.log(products?.length < 1, products);
   const [
     { showInventoryAll, showFastDeliveryOnly, sortBy, maxValue },
     dispatch,
@@ -85,6 +86,24 @@ export const ProductListing = () => {
       />
 
       <div className={productStyle.container}>
+        {!products && (
+          <div
+            style={{
+              display: "flex",
+              flexDirection: "column",
+              justifyContent: "center",
+              alignItems: "center",
+              maxWidth: "100%",
+              height: "85vh",
+            }}
+          >
+            <img
+              src={Spinner}
+              alt=""
+              style={{ width: "100px", height: "100px" }}
+            />
+          </div>
+        )}
         <div className={productStyle.grid}>
           {filteredData?.map(
             ({ _id, name, images: { img_1 }, price, inStock }) => (
