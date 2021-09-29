@@ -32,6 +32,9 @@ input {
   margin-left: 0.5rem;
   /* border-radius: 10.2rem; */
 }
+input[type="email"] {
+  margin-left: 3rem;
+}
 input[type="password"] {
   margin-left: 1.1rem;
 }
@@ -47,6 +50,7 @@ input[type="submit"] {
   background-color: #000;
   color: #fff;
   border: 0.1rem solid black;
+  cursor: pointer;
 }
 .btn:hover {
   background-color: #fff;
