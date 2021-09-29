@@ -28,6 +28,7 @@
   top: 1rem;
   font-size: 1.5rem;
   z-index: 2;
+  cursor: pointer;
 }
 img {
   width: 100%;
@@ -58,6 +59,7 @@ img {
   position: relative;
   z-index: 5;
   transition: 0.2s;
+  cursor: pointer;
 }
 .btn:hover {
   background-color: #fff;
@@ -159,6 +161,7 @@ img {
     font-size: 0.7rem;
     font-weight: 430;
     margin-top: 0.1rem;
+    cursor: pointer;
   }
   .stock {
     position: absolute;

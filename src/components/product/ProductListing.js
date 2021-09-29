@@ -59,31 +59,35 @@ export const ProductListing = () => {
     <div style={{ position: "relative", zIndex: "1" }}>
       <button
         style={{
-          position: "absolute",
-          top: "0.2rem",
-          left: "0.2rem",
-          backgroundColor: "inherit",
+          position: "fixed",
+          top: "4rem",
+          left: "1rem",
+          backgroundColor: "white",
           border: "none",
           fontSize: "1.5rem",
           padding: "0.25rem",
           color: "#000",
           border: "0.1rem solid black",
           borderRadius: "0.3rem",
-          zIndex: "3",
+          zIndex: "7",
         }}
         onClick={() => setDisplay((prev) => !prev)}
       >
         <BsFunnelFill />
       </button>
-      <FilterProducts
-        showInventoryAll={showInventoryAll}
-        showFastDeliveryOnly={showFastDeliveryOnly}
-        sortBy={sortBy}
-        dispatch={dispatch}
-        display={display}
-        setDisplay={setDisplay}
-        maxValue={maxValue}
-      />
+      <div
+        style={{ position: "fixed", top: "4rem", left: "0.5rem", zIndex: "7" }}
+      >
+        <FilterProducts
+          showInventoryAll={showInventoryAll}
+          showFastDeliveryOnly={showFastDeliveryOnly}
+          sortBy={sortBy}
+          dispatch={dispatch}
+          display={display}
+          setDisplay={setDisplay}
+          maxValue={maxValue}
+        />
+      </div>
 
       <div className={productStyle.container}>
         {!products && (

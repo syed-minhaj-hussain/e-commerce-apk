@@ -124,7 +124,8 @@ function App() {
         draggable
         pauseOnHover
       />
-      {cart?.length > 0 && wishlist?.length > 0 && <Footer />}
+
+      {/**  {cart?.length > 3 && wishlist?.length > 3 && <Footer />} */}
     </div>
   );
 }

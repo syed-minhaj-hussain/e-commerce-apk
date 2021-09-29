@@ -30,20 +30,22 @@ export const ShowOrHideAddToCart = ({ _id, btn, isInStock }) => {
             Remove From Cart
           </button>
         ) : (
-          <button
-            className={btn}
-            onClick={() => {
-              dispatch({
-                type: "ADD-TO-CART",
-                payload: products?.find((item) => item?._id === _id),
-              });
-              runToast(toast.success, "Item Added To Cart");
-            }}
-            disabled={!isInStock}
-            style={{ opacity: `${!isInStock ? 0.6 : 1}` }}
-          >
-            Add To Cart
-          </button>
+          isInStock && (
+            <button
+              className={btn}
+              onClick={() => {
+                dispatch({
+                  type: "ADD-TO-CART",
+                  payload: products?.find((item) => item?._id === _id),
+                });
+                runToast(toast.success, "Item Added To Cart");
+              }}
+              disabled={!isInStock}
+              style={{ opacity: `${!isInStock ? 0.6 : 1}` }}
+            >
+              Add To Cart
+            </button>
+          )
         )
       ) : (
         <button
