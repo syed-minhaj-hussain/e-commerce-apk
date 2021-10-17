@@ -40,6 +40,7 @@
   margin: 0.2rem;
   width: 4.5rem;
   height: 4.5rem;
+  cursor: pointer;
 }
 .rightSide {
   position: relative;

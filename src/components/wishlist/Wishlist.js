@@ -4,7 +4,7 @@ import { useWishCartContext } from "../../context/WishCartContext";
 import cartStyle from "../cart/cart.module.css";
 import axios from "axios";
 import { useToastContext } from "../../context/ToastContext";
-import { useNavigate } from "react-router";
+import { useNavigate, Link } from "react-router-dom";
 
 export const Wishlist = () => {
   const {
@@ -67,13 +67,23 @@ export const Wishlist = () => {
           ({ _id, name, images: { img_1 }, price, inStock, prodId }) => (
             <div className={cartStyle.card} key={_id}>
               <div className={cartStyle.cardHead}>
-                <figure className={cartStyle.margin}>
-                  <img className={cartStyle.img} src={img_1} alt={name} />
-                </figure>
+                <Link to={`/products/${prodId}`}>
+                  <figure className={cartStyle.margin}>
+                    <img className={cartStyle.img} src={img_1} alt={name} />
+                  </figure>
+                </Link>
               </div>
               <div className={cartStyle.cardBody}>
                 <div>
-                  <p className={cartStyle.title}> {name}</p>
+                  <p className={cartStyle.title}>
+                    <Link
+                      to={`/products/${_id}`}
+                      style={{ textDecoration: "none", color: "#000" }}
+                    >
+                      {" "}
+                      {name}{" "}
+                    </Link>
+                  </p>
                   <p className={cartStyle.subTitle}> ₹ {price}</p>
 
                   <div>

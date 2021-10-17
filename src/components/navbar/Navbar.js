@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { NavLink } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import navStyle from "./nav.module.css";
 import { useAuthContext } from "../../context/AuthContext";
 import { useWishCartContext } from "../../context/WishCartContext";
@@ -19,7 +19,19 @@ export const Navbar = () => {
 
   return (
     <nav className={navStyle.navbar}>
-      <div className={navStyle.brandTitle}>Vintage-Mart</div>
+      <div className={navStyle.brandTitle}>
+        <Link
+          to="/"
+          style={{
+            textDecoration: "none",
+            color: "#fff",
+            marginLeft: "0.25rem",
+          }}
+        >
+          {" "}
+          Vintage-Mart{" "}
+        </Link>
+      </div>
       <button
         className={navStyle.toggleButton}
         onClick={() => setIsActive((prev) => !prev)}
@@ -98,7 +110,7 @@ export const Navbar = () => {
                   fontSize: "0.7rem",
                 }}
               >
-                {cart.length}
+                {auth ? cart.length : 0}
               </p>
             </NavLink>
           </li>
