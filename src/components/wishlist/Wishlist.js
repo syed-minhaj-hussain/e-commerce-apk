@@ -1,0 +1,153 @@
+import { useEffect } from "react";
+import { useAuthContext } from "../../context/AuthContext";
+import { useWishCartContext } from "../../context/WishCartContext";
+import cartStyle from "../cart/cart.module.css";
+import axios from "axios";
+import { useToastContext } from "../../context/ToastContext";
+import { useNavigate, Link } from "react-router-dom";
+
+export const Wishlist = () => {
+  const {
+    state: { wishlist, products, cart },
+    dispatch,
+  } = useWishCartContext();
+  const { auth } = useAuthContext();
+  const navigate = useNavigate();
+  const { toast, runToast } = useToastContext();
+  useEffect(() => {
+    (async function () {
+      // console.log("Wishlist Updated");
+      if (auth) {
+        // setTimeout(async () => {
+        try {
+          const response = await axios.get(
+            "https://vintage-mart-backend.herokuapp.com/wishlist",
+
+            { headers: { authorization: auth } }
+          );
+          // console.log(response);
+          if (response?.data?.success === true) {
+            dispatch({
+              type: "UPLOAD-WISHLIST",
+              payload: response?.data?.wishlist,
+            });
+          }
+        } catch (err) {
+          console.log({ err });
+        }
+        // }, 1000);
+      }
+    })();
+  }, []);
+  return (
+    <div className={cartStyle.container}>
+      {wishlist?.length < 1 && (
+        <div
+          style={{
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+            maxWidth: "100%",
+            height: "85vh",
+          }}
+        >
+          <h1>Your Wishlist Is Empty!!</h1>
+          <button
+            style={{ width: "200px", padding: "0.6rem", marginTop: "0.5rem" }}
+            className={cartStyle.btn}
+            onClick={() => navigate("/products")}
+          >
+            Browse Products
+          </button>
+        </div>
+      )}
+      <div className={cartStyle.grid}>
+        {wishlist?.map(
+          ({ _id, name, images: { img_1 }, price, inStock, prodId }) => (
+            <div className={cartStyle.card} key={_id}>
+              <div className={cartStyle.cardHead}>
+                <Link to={`/products/${prodId}`}>
+                  <figure className={cartStyle.margin}>
+                    <img className={cartStyle.img} src={img_1} alt={name} />
+                  </figure>
+                </Link>
+              </div>
+              <div className={cartStyle.cardBody}>
+                <div>
+                  <p className={cartStyle.title}>
+                    <Link
+                      to={`/products/${_id}`}
+                      style={{ textDecoration: "none", color: "#000" }}
+                    >
+                      {" "}
+                      {name}{" "}
+                    </Link>
+                  </p>
+                  <p className={cartStyle.subTitle}> ₹ {price}</p>
+
+                  <div>
+                    <button
+                      className={cartStyle.btn}
+                      onClick={async () => {
+                        dispatch({
+                          type: "REMOVE-FROM-WISHLIST",
+                          payload: name,
+                        });
+                        try {
+                          const response = await axios.delete(
+                            `https://vintage-mart-backend.herokuapp.com/wishlist/${_id}`,
+                            { headers: { authorization: auth } }
+                          );
+                          if (response) {
+                            console.log(response.data.message);
+                            runToast(toast.success, response.data.message);
+                          }
+                        } catch (err) {
+                          console.log({ err });
+                        }
+                      }}
+                    >
+                      Remove From Wishlist
+                    </button>
+                    {cart?.find((item) => item.name === name) ? null : (
+                      <button
+                        className={cartStyle.btn}
+                        onClick={() => {
+                          dispatch({
+                            type: "MOVE-TO-CART",
+                            payload: products?.find(
+                              (item) => item.name === name
+                            ),
+                          });
+                          (async function () {
+                            try {
+                              const response = await axios.delete(
+                                `https://vintage-mart-backend.herokuapp.com/wishlist/${_id}`,
+                                { headers: { authorization: auth } }
+                              );
+                              if (response) {
+                                console.log(response.data.message);
+                                runToast(toast.success, response.data.message);
+                              }
+                            } catch (err) {
+                              console.log({ err });
+                            }
+                          })();
+                        }}
+                        disabled={!inStock}
+                        style={{ opacity: `${!inStock ? 0.6 : 1}` }}
+                      >
+                        Move To Cart
+                      </button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </div>
+          )
+        )}
+      </div>
+    </div>
+  );
+};
