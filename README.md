@@ -7,8 +7,8 @@
 
 ## 🚀 Demo
 
-🔗 [Live Demo](https://your-live-demo-link.com)\
-📦 [Backend Repository](https://github.com/yourusername/vintage-mart-backend)
+🔗 [Live Demo](https://vintage-mart.netlify.app/)\
+📦 [Backend Repository](https://github.com/syed-minhaj-hussain/ecommerce-backend)
 
 ---
 
@@ -79,8 +79,7 @@ vintage-mart-frontend/
 ### 1️⃣ Clone the repository
 
 ```bash
-git clone https://github.com/yourusername/vintage-mart-frontend.git
-cd vintage-mart-frontend
+git clone https://github.com/syed-minhaj-hussain/e-commerce-apk
 ```
 
 ### 2️⃣ Install dependencies
@@ -121,13 +120,10 @@ VITE_API_URL=http://localhost:5000/api
 
 ## 🧑‍💻 Author
 
-Minhaj Hussain Syed
-
-Frontend Developer | React | TypeScript | UI/UX
-
-🌐 [Portfolio](https://syedminhajhussain.netlify.app/)
-
-💼 [linkedin](https://syedminhajhussain.netlify.app/)
+Minhaj Hussain Syed\
+Frontend Developer | React | TypeScript | UI/UX\
+🌐 [Portfolio](https://syedminhajhussain.netlify.app/)\
+💼 [linkedin](https://www.linkedin.com/in/syedminhaj09/)
 
 ## 🌟 Future Improvements
 
