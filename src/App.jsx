@@ -30,14 +30,16 @@ function App() {
     (async function () {
       try {
         const response = await axios.get(
-          "https://vintage-mart-backend.herokuapp.com/products"
+          // "https://vintage-mart-backend.herokuapp.com/products"
+          "http://localhost:8000/products"
         );
+        console.log({ response });
         if (response) {
           dispatch({
             type: "UPLOAD-PRODUCTS",
             payload: response?.data?.products,
           });
-          // console.log(response);
+          console.log(response);
         }
       } catch (err) {
         console.log({ err });
@@ -49,7 +51,8 @@ function App() {
       (async function () {
         try {
           const response = await axios.get(
-            "https://vintage-mart-backend.herokuapp.com/wishlist",
+            // "https://vintage-mart-backend.herokuapp.com/wishlist",
+            "http://localhost:8000/wishlist",
             { headers: { authorization: auth } }
           );
           // const response = await axios.get("http://localhost:5000/wishlist", {
@@ -70,7 +73,9 @@ function App() {
       (async function () {
         try {
           const response = await axios.get(
-            "https://vintage-mart-backend.herokuapp.com/cart",
+            // "https://vintage-mart-backend.herokuapp.com/cart",
+            "http://localhost:8000/cart",
+
             { headers: { authorization: auth } }
           );
           if (response) {
@@ -108,8 +113,17 @@ function App() {
           path="/categories/interior"
           element={<Category category="interior" />}
         />
-        <PrivateRoute auth={auth} path="/cart" element={<CartListing />} />
-        <PrivateRoute auth={auth} path="/wishlist" element={<Wishlist />} />
+        <Route path="/cart" element={<PrivateRoute auth={auth} path="/cart" />}>
+          <Route path="/cart" element={<CartListing />} />
+        </Route>
+        <Route
+          path="/wishlist"
+          element={<PrivateRoute auth={auth} path="/wishlist" />}
+        >
+          <Route path="/wishlist" element={<Wishlist />} />
+        </Route>
+        {/* <PrivateRoute auth={auth} path="/cart" element={<CartListing />} />
+        <PrivateRoute auth={auth} path="/wishlist" element={<Wishlist />} /> */}
       </Routes>
       <ToastContainer
         style={{ maxWidth: "400px" }}

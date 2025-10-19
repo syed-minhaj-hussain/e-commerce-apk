@@ -1,13 +1,15 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
+import { StrictMode } from "react";
+import { createRoot } from "react-dom/client";
+import "./index.css";
+import App from "./App.jsx";
+
 import { BrowserRouter as Router } from "react-router-dom";
 import { AuthProvider } from "./context/AuthContext";
 import { WishCartProvider } from "./context/WishCartContext";
-import { ToastProvider } from "./context/ToastContext";
+import { ToastProvider } from "./context/ToastContext.jsx";
 
-ReactDOM.render(
-  <React.StrictMode>
+createRoot(document.getElementById("root")).render(
+  <StrictMode>
     <Router>
       <ToastProvider>
         <AuthProvider>
@@ -17,6 +19,5 @@ ReactDOM.render(
         </AuthProvider>
       </ToastProvider>
     </Router>
-  </React.StrictMode>,
-  document.getElementById("root")
+  </StrictMode>
 );
