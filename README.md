@@ -1,70 +1,137 @@
-# Getting Started with Create React App
+# 🛍️ Vintage Mart — Frontend Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+> A modern e-commerce web application for vintage and unique products built with **React**, **Context Api with UseReducer**, and **React-Router**.  
+> Vintage Mart provides a smooth shopping experience with product listings, user authentication, a dynamic cart system, and secure checkout flow.
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+## 🚀 Demo
 
-### `npm start`
+🔗 [Live Demo](https://your-live-demo-link.com)\
+📦 [Backend Repository](https://github.com/yourusername/vintage-mart-backend)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+---
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+## 🧠 Overview
 
-### `npm test`
+Vintage Mart is a responsive and dynamic frontend built to simulate a real-world e-commerce experience.  
+Users can browse products, filter by category, view detailed product pages, add items to cart, and securely checkout — all wrapped in a clean, minimalist UI inspired by vintage aesthetics.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## ✨ Features
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+✅ **Product Catalog** – Browse all available vintage items with images, prices, and details.\
+✅ **Product Details Page** – Individual product pages with reviews and “Add to Cart”.\
+✅ **Shopping Cart** – Persistent cart management using Context API or Redux Toolkit.\
+✅ **Authentication** – Login / Signup / Logout (JWT integration-ready).\
+✅ **Checkout Flow** – Smooth cart-to-checkout experience.\
+✅ **Responsive UI** – Fully optimized for desktop, tablet, and mobile.\
+✅ **API Integration** – Connects with REST API built using Node.js & Express (backend).\
+✅ **Modern UX** – Built with reusable components and state management.\
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## 🧰 Tech Stack
 
-### `npm run eject`
+**Frontend**
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+- ⚛️ React (v18+)
+- 🧭 React Router DOM
+- 🧩 Context API with useReducer
+- ⚡ Axios (for API calls)
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+**Build & Tools**
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+- ⚙️ Vite
+- 🧱 Git & GitHub for version control
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+---
 
-## Learn More
+## 🗂️ Folder Structure
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+```
+vintage-mart-frontend/
+│
+├── public/ # Static assets (favicon, index.html, etc.)
+│
+├── src/ # Application source code
+│ ├── assets/ # Images, icons, fonts
+│ ├── components/ # Reusable UI components (Navbar, Button, etc.)
+│ ├── context/ # React Context API (AuthContext, WishCartContext, ToastContext)
+│ ├── styles/ # Global styles
+│ ├── App.jsx # Root App component
+│ └── main.jsx # Entry point that renders App
+│
+├── .env # Environment variables (API URLs, secrets)
+├── .eslint.config.js # ESLint configuration
+├── utils # Helper functions and constants
+├── index.html # Main HTML template
+├── package.json # Project metadata and dependencies
+└── vite.config.js # Vite build configuration
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
 
-### Code Splitting
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## ⚙️ Getting Started
 
-### Analyzing the Bundle Size
+### 1️⃣ Clone the repository
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash
+git clone https://github.com/yourusername/vintage-mart-frontend.git
+cd vintage-mart-frontend
+```
 
-### Making a Progressive Web App
+### 2️⃣ Install dependencies
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+npm install
+# or
+yarn install
+```
 
-### Advanced Configuration
+### 3️⃣ Run the development server
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```npm run dev
+# then open http://localhost:5173
+```
 
-### Deployment
+### 4️⃣ Build for production
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+npm run build
+```
 
-### `npm run build` fails to minify
+### 5️⃣ Preview production build
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+npm run preview
+```
+
+### 🔌 Environment Variables
+
+Create a `.env` file in the root directory with:
+
+```
+VITE_API_URL=http://localhost:5000/api
+```
+
+---
+
+## 🧑‍💻 Author
+
+Minhaj Hussain Syed
+
+Frontend Developer | React | TypeScript | UI/UX
+
+🌐 [Portfolio](https://syedminhajhussain.netlify.app/)
+
+💼 [linkedin](https://syedminhajhussain.netlify.app/)
+
+## 🌟 Future Improvements
+
+- Add product reviews & ratings
+- Improve accessibility (WCAG)
+- Add order history pages
+- Implement dark/light theme toggle
