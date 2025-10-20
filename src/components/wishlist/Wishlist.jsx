@@ -5,6 +5,7 @@ import cartStyle from "../cart/cart.module.css";
 import axios from "axios";
 import { useToastContext } from "../../context/ToastContext";
 import { useNavigate, Link } from "react-router-dom";
+import { API_URL } from "../../utilities";
 
 export const Wishlist = () => {
   const {
@@ -14,17 +15,30 @@ export const Wishlist = () => {
   const { auth } = useAuthContext();
   const navigate = useNavigate();
   const { toast, runToast } = useToastContext();
+
+  const removeFromWishlist = async (_id) => {
+    try {
+      const response = await axios.delete(`${API_URL}wishlist/${_id}`, {
+        headers: { authorization: auth },
+      });
+      if (response) {
+        console.log(response.data.message);
+        runToast(toast.success, response.data.message);
+      }
+    } catch (err) {
+      console.log({ err });
+    }
+  };
+
   useEffect(() => {
     (async function () {
       // console.log("Wishlist Updated");
       if (auth) {
         // setTimeout(async () => {
         try {
-          const response = await axios.get(
-            "https://vintage-mart-backend.herokuapp.com/wishlist",
-
-            { headers: { authorization: auth } }
-          );
+          const response = await axios.get(`${API_URL}wishlist`, {
+            headers: { authorization: auth },
+          });
           // console.log(response);
           if (response?.data?.success === true) {
             dispatch({
@@ -89,23 +103,12 @@ export const Wishlist = () => {
                   <div>
                     <button
                       className={cartStyle.btn}
-                      onClick={async () => {
+                      onClick={() => {
                         dispatch({
                           type: "REMOVE-FROM-WISHLIST",
                           payload: name,
                         });
-                        try {
-                          const response = await axios.delete(
-                            `https://vintage-mart-backend.herokuapp.com/wishlist/${_id}`,
-                            { headers: { authorization: auth } }
-                          );
-                          if (response) {
-                            console.log(response.data.message);
-                            runToast(toast.success, response.data.message);
-                          }
-                        } catch (err) {
-                          console.log({ err });
-                        }
+                        removeFromWishlist(_id);
                       }}
                     >
                       Remove From Wishlist
@@ -120,20 +123,7 @@ export const Wishlist = () => {
                               (item) => item.name === name
                             ),
                           });
-                          (async function () {
-                            try {
-                              const response = await axios.delete(
-                                `https://vintage-mart-backend.herokuapp.com/wishlist/${_id}`,
-                                { headers: { authorization: auth } }
-                              );
-                              if (response) {
-                                console.log(response.data.message);
-                                runToast(toast.success, response.data.message);
-                              }
-                            } catch (err) {
-                              console.log({ err });
-                            }
-                          })();
+                          removeFromWishlist(_id);
                         }}
                         disabled={!inStock}
                         style={{ opacity: `${!inStock ? 0.6 : 1}` }}

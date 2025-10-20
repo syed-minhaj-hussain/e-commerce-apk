@@ -17,6 +17,11 @@ export const Navbar = () => {
     state: { cart, wishlist },
   } = useWishCartContext();
 
+  const linkStyle = ({ isActive }) =>
+    isActive
+      ? `${navStyle.activeLink} ${navStyle.navLinks}`
+      : navStyle.navLinks;
+
   return (
     <nav className={navStyle.navbar}>
       <div className={navStyle.brandTitle}>
@@ -28,8 +33,7 @@ export const Navbar = () => {
             marginLeft: "0.25rem",
           }}
         >
-          {" "}
-          Vintage-Mart{" "}
+          Vintage-Mart
         </Link>
       </div>
       <button
@@ -51,13 +55,7 @@ export const Navbar = () => {
           <li>
             <NavLink
               to="/"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "#333",
-                backgroundColor: "rgb(220,152,20)",
-                height: "100%",
-              }}
-              className={navStyle.navLinks}
+              className={linkStyle}
               end
               onClick={() => setIsActive((prev) => !prev)}
             >
@@ -67,13 +65,7 @@ export const Navbar = () => {
           <li>
             <NavLink
               to="/products"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "#333",
-                backgroundColor: "rgb(220,152,20)",
-                height: "100%",
-              }}
-              className={navStyle.navLinks}
+              className={linkStyle}
               onClick={() => setIsActive((prev) => !prev)}
             >
               <BiShoppingBag style={{ fontSize: "1.25rem" }} />
@@ -82,13 +74,7 @@ export const Navbar = () => {
           <li>
             <NavLink
               to="/cart"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "#333",
-                backgroundColor: "rgb(220,152,20)",
-                height: "100%",
-              }}
-              className={navStyle.navLinks}
+              className={linkStyle}
               style={{ position: "relative" }}
               onClick={() => {
                 if (!auth) {
@@ -117,13 +103,7 @@ export const Navbar = () => {
           <li>
             <NavLink
               to="/wishlist"
-              activeStyle={{
-                fontWeight: "bold",
-                color: "#333",
-                backgroundColor: "rgb(220,152,20)",
-                height: "100%",
-              }}
-              className={navStyle.navLinks}
+              className={linkStyle}
               style={{ position: "relative" }}
               onClick={() => {
                 if (!auth) {
@@ -147,7 +127,7 @@ export const Navbar = () => {
                   fontSize: "0.7rem",
                 }}
               >
-                {wishlist?.length ? wishlist.length : 0}
+                {auth ? wishlist.length : 0}
               </p>
             </NavLink>
           </li>
@@ -165,13 +145,7 @@ export const Navbar = () => {
             ) : (
               <NavLink
                 to="/login"
-                activeStyle={{
-                  fontWeight: "bold",
-                  color: "#333",
-                  backgroundColor: "rgb(220,152,20)",
-                  height: "100%",
-                }}
-                className={navStyle.navLinks}
+                className={linkStyle}
                 onClick={() => setIsActive((prev) => !prev)}
               >
                 Login

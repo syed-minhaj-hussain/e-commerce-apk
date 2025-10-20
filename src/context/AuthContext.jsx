@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router";
 import axios from "axios";
 import { useToastContext } from "./ToastContext";
+import { API_URL } from "../utilities";
 
 const AuthContext = createContext();
 
@@ -14,10 +15,10 @@ export const AuthProvider = ({ children }) => {
 
   const login = async (text, password, route) => {
     try {
-      const response = await axios.post(
-        "https://vintage-mart-backend.herokuapp.com/login",
-        { email: text, password: password }
-      );
+      const response = await axios.post(`${API_URL}login`, {
+        email: text,
+        password: password,
+      });
       //
       if (response?.data?.success === true) {
         // console.log({ response });
@@ -47,10 +48,11 @@ export const AuthProvider = ({ children }) => {
 
   const register = async (text, email, password) => {
     try {
-      const response = await axios.post(
-        "https://vintage-mart-backend.herokuapp.com/register",
-        { name: text, email: email, password: password }
-      );
+      const response = await axios.post(`${API_URL}register`, {
+        name: text,
+        email: email,
+        password: password,
+      });
       //
       if (response?.data?.success === true) {
         // console.log(response);

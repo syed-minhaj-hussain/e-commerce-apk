@@ -53,7 +53,6 @@ export const ProductListing = () => {
     showFastDeliveryOnly,
     showInventoryAll,
   });
-  // console.log({ filteredData });
 
   return (
     <div style={{ position: "relative", zIndex: "1" }}>

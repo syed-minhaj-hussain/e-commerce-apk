@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 import { useAuthContext } from "../../context/AuthContext";
 import logStyle from "./login.module.css";
+import { TEST_USER } from "../../utilities";
 
 export const Login = () => {
   const { auth, login } = useAuthContext();
@@ -63,7 +64,7 @@ export const Login = () => {
                 padding: "0.5rem 0.5rem",
               }}
               onClick={() => {
-                login("syed.minhaj0911@gmail.com", "minhaj123", state?.from);
+                login(TEST_USER.email, TEST_USER.password, state?.from);
               }}
             >
               Login As Guest

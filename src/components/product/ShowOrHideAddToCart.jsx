@@ -11,7 +11,6 @@ export const ShowOrHideAddToCart = ({ _id, btn, isInStock }) => {
   const { auth } = useAuthContext();
   const navigate = useNavigate();
   const { toast, runToast } = useToastContext();
-
   return (
     <>
       {auth ? (
