@@ -80,3 +80,11 @@ export const reducer = (state, action) => {
       return state;
   }
 };
+
+export const API_URL = import.meta.env.VITE_API_URL;
+export const STRIPE_KEY = import.meta.env.VITE_STRIPE_KEY;
+
+export const TEST_USER = {
+  email: "test@vintage.com",
+  password: "Test@@123",
+};
