@@ -1,5 +1,5 @@
 import { createContext, useReducer, useContext, useEffect } from "react";
-import { reducerFunc } from "../utilities";
+import { API_URL, reducerFunc } from "../utilities";
 import { useAuthContext } from "./AuthContext";
 import axios from "axios";
 
@@ -22,11 +22,9 @@ export const WishCartProvider = ({ children }) => {
       if (auth) {
         // console.log("CART");
         try {
-          const response = await axios.post(
-            "https://vintage-mart-backend.herokuapp.com/cart",
-            state?.cart,
-            { headers: { authorization: auth } }
-          );
+          const response = await axios.post(`${API_URL}cart`, state?.cart, {
+            headers: { authorization: auth },
+          });
           console.log({ cartResponse: response });
         } catch (err) {
           console.log({ err });

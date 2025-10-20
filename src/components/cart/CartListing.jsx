@@ -6,6 +6,7 @@ import StripeCheckout from "react-stripe-checkout";
 import axios from "axios";
 import { useAuthContext } from "../../context/AuthContext";
 import { useNavigate, Link } from "react-router-dom";
+import { API_URL, STRIPE_KEY } from "../../utilities";
 
 export const CartListing = () => {
   const {
@@ -25,8 +26,7 @@ export const CartListing = () => {
   );
   async function handleToken(token, addresses) {
     const response = await axios.post(
-      "https://vintage-mart-backend.herokuapp.com/payment",
-
+      `${API_URL}payment`,
       {
         token,
         cartItems: cart,
@@ -34,9 +34,6 @@ export const CartListing = () => {
       { headers: { authorization: auth } }
     );
     const { success } = response.data;
-    // console.log("Response:", response);
-    // console.log("Status:", response.data.status);
-    // console.log("StatusType:", typeof response?.data?.status);
     if (success) {
       dispatch({ type: "RESET-CART" });
       toast("Success! Check email for details", { type: "success" });
@@ -56,7 +53,7 @@ export const CartListing = () => {
             <h2>{total} </h2>
           </div>
           <StripeCheckout
-            stripeKey="pk_test_51JcPucSGNCN5XsLAYX07CjxIwr5pAInQbkHj4lmo5MSPbaTtJSmOeYHe0V97M2zpp7VCuazcgTSAJbUbCWnIwg0200V4ZhC0aj"
+            stripeKey={STRIPE_KEY}
             token={handleToken}
             currency="inr"
             amount={total * 100}
@@ -147,7 +144,6 @@ export const CartListing = () => {
                       className={cartStyle.btn}
                       onClick={() => {
                         dispatch({ type: "REMOVE-FROM-CART", payload: _id });
-
                         runToast(toast.success, "Item Removed From Cart");
                       }}
                     >

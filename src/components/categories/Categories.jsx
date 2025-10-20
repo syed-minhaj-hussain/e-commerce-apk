@@ -13,7 +13,7 @@ export const Categories = () => {
             <figure>
               <img
                 src={"https://i.ibb.co/F4D8Pd3/category-thumb-decoration.jpg"}
-                alt=""
+                alt="Category"
               />
             </figure>
             <div className={cat.cardBody}>Decoration</div>
@@ -26,7 +26,7 @@ export const Categories = () => {
                 src={
                   "https://i.ibb.co/pLhwDyP/category-thumb-bags-backpacks.jpg"
                 }
-                alt=""
+                alt="Category"
               />
             </figure>
             <div className={cat.cardBody}>Bags & Backpacks</div>
@@ -37,7 +37,7 @@ export const Categories = () => {
             <figure>
               <img
                 src={"https://i.ibb.co/3SCMjSk/category-thumb-essentials.jpg"}
-                alt=""
+                alt="Category"
               />
             </figure>
             <div className={cat.cardBody}>Essentialls</div>
@@ -48,7 +48,7 @@ export const Categories = () => {
             <figure>
               <img
                 src={"https://i.ibb.co/55T7YPs/category-thumb-interior.jpg"}
-                alt=""
+                alt="Category"
               />
             </figure>
             <div className={cat.cardBody}>Interior</div>
@@ -59,7 +59,7 @@ export const Categories = () => {
             <figure>
               <img
                 src={"https://i.ibb.co/P55ZQcc/category-thumb-all.jpg"}
-                alt=""
+                alt="Category"
               />
             </figure>
             <div className={cat.cardBody}>All</div>

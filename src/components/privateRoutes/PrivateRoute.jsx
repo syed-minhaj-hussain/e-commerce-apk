@@ -3,7 +3,6 @@ export const PrivateRoute = ({ auth, element, path }) => {
   return (
     <>
       {auth ? (
-        // <Route path={path} element={element} />
         <Outlet />
       ) : (
         <Navigate to="/login" state={{ from: path }} replace />
